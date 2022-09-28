@@ -1,8 +1,9 @@
 {
   "name": "sarufi",
-  "version": "0.0.2-Alpha",
+  "version": "0.0.5-Alpha",
   "description": "Sarufi NodeJs SDK to help you interact with Sarufi Conversational API",
-  "main": "./lib/src/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],
@@ -117,6 +118,7 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "sarufi": "^0.0.4-Alpha"
   }
 }
