@@ -1,6 +1,6 @@
 {
   "name": "sarufi",
-  "version": "0.0.1-Alpha",
+  "version": "0.0.2-Alpha",
   "description": "Sarufi NodeJs SDK to help you interact with Sarufi Conversational API",
   "main": "./lib/src/index.js",
   "files": [
@@ -117,7 +117,6 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "dotenv": "^16.0.2"
+    "axios": "^0.27.2"
   }
 }
