@@ -18,4 +18,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
           DESTINATION_BRANCH: main
-          KEYWORD: release
+          KEYWORD: build
