@@ -1,4 +1,4 @@
-import sarufi from '../../src/modules/index';
+import { sarufi } from '../../src';
 import {
   ErrorResponse,
   LoginResponse,

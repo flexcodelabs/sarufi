@@ -1,7 +1,7 @@
 import { sanitizeLoginError } from '../../src/shared/helpers/error.helper';
 import { AxiosError } from 'axios';
 describe('Login', () => {
-  it('Should return a sanitized Error', async () => {
+  it('Should return a sanitized Error', () => {
     const error = {
       message: 'An error occured',
       response: { data: {} },

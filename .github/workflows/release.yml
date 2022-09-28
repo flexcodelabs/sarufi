@@ -28,11 +28,13 @@ jobs:
       - name: 💚
         run: npm run build
 
-      - name: 🔖
+      - name: 🚀
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
 
-      - name: 🚀
-        uses: codecov/codecov-action@v3.1.0
+      - name: 🔀
+        uses: BaharaJr/merge-pr@0.0.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
