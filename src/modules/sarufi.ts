@@ -5,15 +5,13 @@ import {
   LoginResponse,
 } from '../shared/interfaces/auth.interface';
 export class Sarufi {
-  constructor() {}
   private BASE_DOMAIN = 'https://api.sarufi.io';
-
   login = async (
     username: string,
     password: string
   ): Promise<LoginResponse | ErrorResponse> => {
     try {
-      const data = (
+      const data: LoginResponse = (
         await axios.post(`${this.BASE_DOMAIN}/users/login`, {
           username,
           password,
