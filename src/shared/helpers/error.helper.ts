@@ -9,7 +9,7 @@ const sanitizedAxiosError = (
     return {
       ...serverError?.response?.data,
       code: serverError?.code || 'FAILED',
-      status: serverError?.response?.status || 404,
+      status: serverError?.response?.status || 400,
       success: false,
     };
   }
@@ -18,7 +18,7 @@ const sanitizedAxiosError = (
     success: false,
     message: error?.message,
     token: '',
-    status: 404,
+    status: 400,
   };
 };
 export const sanitizeLoginError = (error: AxiosError): ErrorResponse => {
