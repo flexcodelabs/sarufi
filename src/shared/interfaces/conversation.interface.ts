@@ -11,7 +11,6 @@ export interface Conversation {
 export interface ConversationResponse {
   message:
     | string
-    | string
     | number
     | unknown
     | [string]
@@ -24,6 +23,6 @@ export interface ConversationResponse {
   [key: string]: string | unknown;
 }
 export interface ConversationInput {
-  chat_id: string | number | unknown;
   message: string;
+  chat_id?: string | number | unknown;
 }
