@@ -6,10 +6,3 @@ export interface LoginResponse {
   code?: string;
   status?: number;
 }
-export interface ErrorResponse {
-  success: boolean;
-  message: string;
-  code?: string;
-  status?: number;
-  token: string;
-}
