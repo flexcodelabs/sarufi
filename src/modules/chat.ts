@@ -1,5 +1,8 @@
 import { Bot } from '../shared/interfaces/bot.interface';
-import { ConversationInput } from '../shared/interfaces/conversation.interface';
+import {
+  ConversationInput,
+  ConversationResponse,
+} from '../shared/interfaces/conversation.interface';
 import axios, { AxiosError } from 'axios';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { sanitizeErrorResponse } from '../shared/helpers/error.helper';
@@ -11,7 +14,9 @@ export class ChatConversation {
     private token: string | undefined
   ) {}
 
-  chat = async (data: ConversationInput): Promise<Bot | ErrorResponse> => {
+  chat = async (
+    data: ConversationInput
+  ): Promise<ConversationResponse | ErrorResponse> => {
     if (this.token) {
       return this.startChat(this.token, data);
     }
@@ -25,9 +30,9 @@ export class ChatConversation {
   private startChat = async (
     token: string,
     data: ConversationInput
-  ): Promise<Bot | ErrorResponse> => {
+  ): Promise<ConversationResponse | ErrorResponse> => {
     try {
-      const response: Bot = (
+      const response: ConversationResponse = (
         await axios.post(
           `${this.url}/conversation`,
           {
@@ -37,7 +42,7 @@ export class ChatConversation {
           { headers: { Authorization: `Bearer ${token}` } }
         )
       ).data;
-      return response;
+      return { ...response, success: true };
     } catch (e) {
       return sanitizeErrorResponse(e as AxiosError);
     }

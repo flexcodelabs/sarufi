@@ -1,13 +1,19 @@
 import axios, { AxiosError } from 'axios';
 import { sanitizeErrorResponse } from '../shared/helpers/error.helper';
-import { LoginResponse } from '../shared/interfaces/auth.interface';
+import { Login, LoginResponse } from '../shared/interfaces/auth.interface';
 import {
   BotRequest,
   BotResponse,
   BotsResponse,
   DeleteBot,
 } from '../shared/interfaces/bot.interface';
+import {
+  Conversation,
+  ConversationInput,
+  ConversationResponse,
+} from '../shared/interfaces/conversation.interface';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
+import { ChatConversation } from './chat';
 
 declare let global: { token: string | undefined; url: string | undefined };
 
@@ -16,21 +22,15 @@ export class Sarufi {
     global.url = this.url;
   }
   private BASE_DOMAIN = global.url || 'https://api.sarufi.io';
-  login = async (
-    username: string,
-    password: string
-  ): Promise<LoginResponse | ErrorResponse> => {
+  login = async (data: Login): Promise<LoginResponse | ErrorResponse> => {
     try {
-      const data: LoginResponse = (
-        await axios.post(`${this.BASE_DOMAIN}/users/login`, {
-          username,
-          password,
-        })
+      const loggedInUser: LoginResponse = (
+        await axios.post(`${this.BASE_DOMAIN}/users/login`, data)
       ).data;
       if (global) {
-        global.token = data.token;
+        global.token = loggedInUser.token;
       }
-      return { ...data, success: true };
+      return { ...loggedInUser, success: true };
     } catch (error) {
       return sanitizeErrorResponse(error as AxiosError);
     }
@@ -82,6 +82,22 @@ export class Sarufi {
     };
   };
 
+  private startChat = async (
+    data: Conversation,
+    token: string
+  ): Promise<ConversationResponse | ErrorResponse> => {
+    try {
+      const convo: ConversationResponse = (
+        await axios.post(`${this.BASE_DOMAIN}/conversation`, data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      ).data;
+      return { ...convo, success: true };
+    } catch (e) {
+      return sanitizeErrorResponse(e as AxiosError);
+    }
+  };
+
   private getUserBots = async (
     token: string
   ): Promise<ErrorResponse | BotsResponse> => {
@@ -106,7 +122,16 @@ export class Sarufi {
           headers: { Authorization: `Bearer ${token}` },
         })
       ).data;
-      return { success: true, bot };
+      const chatBot = new ChatConversation(bot, this.BASE_DOMAIN, global.token);
+      return {
+        success: true,
+        bot,
+        chat: async function (
+          data: ConversationInput
+        ): Promise<ConversationResponse | ErrorResponse> {
+          return await chatBot.chat(data);
+        },
+      };
     } catch (e) {
       return sanitizeErrorResponse(e as AxiosError);
     }
@@ -122,7 +147,20 @@ export class Sarufi {
           headers: { Authorization: `Bearer ${token}` },
         })
       ).data;
-      return { success: true, bot: updatedBot };
+      const chatBot = new ChatConversation(
+        updatedBot,
+        this.BASE_DOMAIN,
+        global.token
+      );
+      return {
+        success: true,
+        bot: updatedBot,
+        chat: async function (
+          data: ConversationInput
+        ): Promise<ConversationResponse | ErrorResponse> {
+          return await chatBot.chat(data);
+        },
+      };
     } catch (e) {
       return sanitizeErrorResponse(e as AxiosError);
     }
@@ -152,7 +190,21 @@ export class Sarufi {
           headers: { Authorization: `Bearer ${token}` },
         })
       ).data;
-      return { success: true, bot: createdBot };
+      const chatBot = new ChatConversation(
+        createdBot,
+        this.BASE_DOMAIN,
+        global.token
+      );
+
+      return {
+        success: true,
+        bot: createdBot,
+        chat: async function (
+          data: ConversationInput
+        ): Promise<ConversationResponse | ErrorResponse> {
+          return await chatBot.chat(data);
+        },
+      };
     } catch (e) {
       return sanitizeErrorResponse(e as AxiosError);
     }
