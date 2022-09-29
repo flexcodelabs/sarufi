@@ -14,7 +14,7 @@ const mocker = HttpRequestMock.setupForUnitTest('xhr');
 const BASE_DOMAIN = 'https://api.sarufi.io';
 
 //Mock succesfull
-describe('Successful Login', () => {
+describe('Login User', () => {
   const loginDTO = {
     success: true,
     message: 'Logged in successfully',
@@ -33,7 +33,7 @@ describe('Successful Login', () => {
   });
 });
 
-describe('Successful Bot creation', () => {
+describe('Create Bot', () => {
   mocker.post(`${BASE_DOMAIN}/chatbot`, (): BotRequest => {
     return BotData;
   });
@@ -46,7 +46,7 @@ describe('Successful Bot creation', () => {
   });
 });
 
-describe('Successful Get Bots', () => {
+describe('Get Bots', () => {
   mocker.get(`${BASE_DOMAIN}/chatbots`, (): Bot[] => {
     return BotsData;
   });
@@ -56,48 +56,13 @@ describe('Successful Get Bots', () => {
     expect(userBots.bots?.length).toBe(2);
   });
 });
-
-/*
-describe('Successful Login', () => {
-  const loginDTO = {
-    success: false,
-    message: 'Logged in failed',
-    token: null,
-  };
-  mocker.post(`${BASE_DOMAIN}/users/login`, (): {
-    token: null;
-    success: boolean;
-  } => {
-    return { token: null, success: false };
-  });
-  it('Should return message and token', async () => {
-    const result: LoginResponse | ErrorResponse = await sarufi.login('', '');
-    console.log(result);
-    expect(result.message).toBeDefined();
-  });
-});
-
-describe('Failed Bot creation', () => {
-  mocker.post(`${BASE_DOMAIN}/chatbot`, (): BotRequest => {
+describe('Get Bot', () => {
+  mocker.get(`${BASE_DOMAIN}/chatbot/26`, (): Bot => {
     return BotData;
   });
-  it('Should return a created bot given a valid token', async () => {
-    const createdBot = await sarufi.createBot({
-      name: '',
-    });
-    console.log(createdBot);
-    expect(createdBot.success).toBe(false);
-    expect(createdBot.bot).toBe(undefined);
+  it('Should return user bots', async () => {
+    const userBots = await sarufi.geBot(BotData.id);
+    expect(userBots.success).toBe(true);
+    expect(userBots.bot?.id).toBe(26);
   });
 });
-
-describe('Failed Get Bots', () => {
-  mocker.get(`${BASE_DOMAIN}/chatbots`, (): Bot[] => {
-    return BotsData;
-  });
-  it('Should return user bots', async () => {
-    const userBots = await sarufi.geBots();
-    expect(userBots.success).toBe(false);
-    expect(userBots.bots?.length).toBe(0);
-  });
-});*/

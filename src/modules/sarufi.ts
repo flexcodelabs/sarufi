@@ -47,6 +47,17 @@ export class Sarufi {
     return { success: false, bots: [], message: 'Unauthorized' };
   };
 
+  geBot = async (id: number): Promise<ErrorResponse | BotResponse> => {
+    if (global?.token && id) {
+      return await this.getUserBot(global?.token, id);
+    }
+    return {
+      success: false,
+      bots: undefined,
+      message: global?.token ? 'Unauthorized' : 'Bot ID not supplied',
+    };
+  };
+
   private getUserBots = async (
     token: string
   ): Promise<ErrorResponse | BotsResponse> => {
@@ -57,6 +68,21 @@ export class Sarufi {
         })
       ).data;
       return { success: true, bots };
+    } catch (e) {
+      return sanitizeErrorResponse(e as AxiosError);
+    }
+  };
+  private getUserBot = async (
+    token: string,
+    id: number
+  ): Promise<ErrorResponse | BotResponse> => {
+    try {
+      const bot = (
+        await axios.get(`${this.BASE_DOMAIN}/chatbot/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      ).data;
+      return { success: true, bot };
     } catch (e) {
       return sanitizeErrorResponse(e as AxiosError);
     }

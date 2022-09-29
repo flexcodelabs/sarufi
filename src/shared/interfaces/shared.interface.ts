@@ -5,7 +5,7 @@ export interface ErrorResponse {
   message: string;
   code?: string;
   status?: number;
-  token: string | undefined;
+  token?: string | undefined;
   bot?: Bot | undefined;
   bots?: Bot[] | undefined;
 }
