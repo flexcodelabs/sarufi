@@ -18,7 +18,7 @@ const sanitizedAxiosError = (
     success: false,
     message: error?.message,
     token: '',
-    status: 400,
+    status: 500,
   };
 };
 export const sanitizeErrorResponse = (error: AxiosError): ErrorResponse => {

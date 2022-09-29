@@ -87,7 +87,7 @@ describe('Delete Bot', () => {
     return { message: 'Bot deleted' };
   });
   it('Should delete a bot', async () => {
-    const deleteBot = await sarufi.deleteBot(BotData.id);
+    const deleteBot = await sarufi.deleteBot({ id: BotData.id });
     expect(deleteBot.success).toBe(true);
     expect(deleteBot?.message).toBe('Bot deleted');
   });
