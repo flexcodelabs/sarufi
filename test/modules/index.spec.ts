@@ -1,4 +1,4 @@
-import { sarufi } from '../../src';
+import sarufi from '../../src';
 import { LoginResponse } from '../../src/shared/interfaces/auth.interface';
 import axios from 'axios';
 import xhrAdapter from 'axios/lib/adapters/xhr';
