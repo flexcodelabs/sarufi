@@ -2,6 +2,7 @@ import {
   ConversationInput,
   ConversationResponse,
 } from './conversation.interface';
+import { ErrorResponse } from './shared.interface';
 
 export interface BotsResponse {
   success: boolean;
@@ -19,7 +20,9 @@ export interface Flows {
 export interface BotResponse {
   success: boolean;
   bot: Bot | undefined;
-  chat: (data: ConversationInput) => ConversationResponse;
+  chat: (
+    data: ConversationInput
+  ) => Promise<ConversationResponse | ErrorResponse>;
 }
 
 export type Chat = {

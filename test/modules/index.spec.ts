@@ -112,12 +112,12 @@ describe('Start conversation', () => {
       mocker.post(`${BASE_DOMAIN}/conversation`, (): ConversationResponse => {
         return convoResponse;
       });
-      const convo: ConversationResponse = await userBot.chat({
+      const convo: ConversationResponse | ErrorResponse = await userBot.chat({
         message: 'Yooh',
         chat_id: 'Start',
       });
       expect(convo).toMatchObject(convoResponse);
-      expect(convo.memory).toMatchObject(convoResponse.memory);
+      expect(convo?.memory).toMatchObject(convoResponse.memory);
     }
   });
 });
