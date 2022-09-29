@@ -82,22 +82,6 @@ export class Sarufi {
     };
   };
 
-  private startChat = async (
-    data: Conversation,
-    token: string
-  ): Promise<ConversationResponse | ErrorResponse> => {
-    try {
-      const convo: ConversationResponse = (
-        await axios.post(`${this.BASE_DOMAIN}/conversation`, data, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-      ).data;
-      return { ...convo, success: true };
-    } catch (e) {
-      return sanitizeErrorResponse(e as AxiosError);
-    }
-  };
-
   private getUserBots = async (
     token: string
   ): Promise<ErrorResponse | BotsResponse> => {

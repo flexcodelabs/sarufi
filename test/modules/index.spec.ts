@@ -41,9 +41,7 @@ describe('Create Bot', () => {
     return BotData;
   });
   it('Should return a created bot given a valid token', async () => {
-    const createdBot = await sarufi.createBot({
-      bot: { name: '' },
-    });
+    const createdBot = await sarufi.createBot({ name: '' });
     expect(createdBot.success).toBe(true);
     expect(createdBot.bot).toMatchObject(BotData);
   });
