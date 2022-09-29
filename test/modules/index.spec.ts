@@ -101,18 +101,23 @@ describe('Start conversation', () => {
     expect(userBot.success).toBe(true);
     expect(userBot.bot?.id).toBe(27);
     if (userBot.chat) {
-      mocker.post(`${BASE_DOMAIN}/conversations`, (): ConversationResponse => {
-        return {
-          success: true,
-          message: ['Hi, How are you?'],
-          memory: {
-            greets: 'oya',
-          },
-          next_state: 'end',
-        };
+      const convoResponse = {
+        success: true,
+        message: ['Hi, How are you?'],
+        memory: {
+          greets: 'oya',
+        },
+        next_state: 'end',
+      };
+      mocker.post(`${BASE_DOMAIN}/conversation`, (): ConversationResponse => {
+        return convoResponse;
       });
-      const convo = await userBot.chat({ message: 'Yooh', chat_id: 'Start' });
-      console.log(convo);
+      const convo: ConversationResponse = await userBot.chat({
+        message: 'Yooh',
+        chat_id: 'Start',
+      });
+      expect(convo).toMatchObject(convoResponse);
+      expect(convo.memory).toMatchObject(convoResponse.memory);
     }
   });
 });
