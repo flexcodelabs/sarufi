@@ -194,6 +194,6 @@ bot.chat({message: 'Yooh'})
 
 Although an error response can have more than those properties, when the status is 500, that will denote an error occured within the sarufi otherwise it will be from an error originating from the remote sarufi server.
 
-## `NB`: For detailed documentation, please visit the [Python Sarufi SDK Docs](https://docs.sarufi.io/)
+`NB`: For detailed documentation, please visit the [Python Sarufi SDK Docs](https://docs.sarufi.io/)
 
 ### Developed and Maintained with ❤️ at [Flexcode Labs](https://flexcodelabs.com)
