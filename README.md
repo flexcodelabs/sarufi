@@ -23,7 +23,11 @@ We suply username and password for us to be able to login.
 
 > Request: From the imported `sarufi`, call
 
-`sarufi.log({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})`
+```JS
+
+sarufi.log({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})
+
+```
 
 > Response for successful login
 
@@ -53,7 +57,11 @@ We supply chatbot details
 
 Then we call
 
-`sarufi.createBot({bot: REQUEST PAYLOAD})`
+```JS
+
+sarufi.createBot({bot: REQUEST PAYLOAD})
+
+```
 
 `NB: ` For detailed description of intents and flows to be used in conversation, refer to [Python Sarufi SDK Docs](https://docs.sarufi.io/docs/Getting%20started%20/create-a-simple-chatbot#help-me-order-a-pizza-intent)
 
@@ -74,7 +82,7 @@ Then we call
             "created_at": "DATE THE BOT WAS CREATED"
   },
   "chat": "({message: string, chat_id?: uknown}) => RETURNS CHAT RESPONSE" //A callable method that starts a chat with your bot, it takes in a string message and optional chat ID
-};
+}
 ```
 
 ### Updating your bot
@@ -83,23 +91,39 @@ Updating a bot, takes in the same arguments as creating a bot with addition of b
 
 > Request
 
-`sarufi.updateBot({bot: REQUEST PAYLOAD, id: YOUR BOT ID})`
+```JS
+
+sarufi.updateBot({bot: REQUEST PAYLOAD, id: YOUR BOT ID})
+
+```
 
 > Response on success, is the same as the response for creating a bot
 
 ### Get bot by id
 
-> We call the following method on `sarufi` and pass the bot id
+We call the following method on `sarufi` and pass the bot id
 
-`sarufi.getBot({id: BOT ID})`
+> Request
+
+```JS
+
+sarufi.getBot({id: BOT ID})
+
+```
 
 > Response on success, is the same as the response for creating and updating a bot
 
 ### Get bots
 
-> We call the following method on `sarufi` and pass the bot id
+We call the following method on `sarufi` and pass the bot id
 
-`sarufi.getBots()`
+> Request
+
+```JS
+
+sarufi.getBots()
+
+```
 
 > Response on success
 
@@ -115,7 +139,11 @@ Updating a bot, takes in the same arguments as creating a bot with addition of b
 
 We call the following method on `sarufi` and pass the bot id
 
-`sarufi.deleteBot({id: BOT ID})`
+```JS
+
+sarufi.deleteBot({id: BOT ID})
+
+```
 
 > Response on success
 
@@ -131,8 +159,10 @@ We call the following method on `sarufi` and pass the bot id
 This requires us to get a bot we want to have a conversation with and calling a chat method
 
 ```JS
+
 const bot = sarufi.getBot({id: 'OUR BOT ID'})
 bot.chat({message: 'Yooh'})
+
 ```
 
 > Response on success
@@ -145,5 +175,25 @@ bot.chat({message: 'Yooh'})
   [key: string]: string | unknown
 }
 ```
+
+### `All Responses have:-`
+
+1. `Success` properties that shows wether or not the request was successful
+2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
+
+> Example of failed request
+
+```JSON
+{
+  "success": false,
+  "message": "MESSAGE", //an error message explaining the error
+  "code": "string",
+  "status": "NUMBER",
+}
+```
+
+Although an error response can have more than those properties, when the status is 500, that will denote an error occured within the sarufi otherwise it will be from an error originating from the remote sarufi server.
+
+## `NB`: For detailed documentation, please visit the [Python Sarufi SDK Docs](https://docs.sarufi.io/)
 
 ### Developed and Maintained with ❤️ at [Flexcode Labs](https://flexcodelabs.com)
