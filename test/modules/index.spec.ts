@@ -6,6 +6,7 @@ import HttpRequestMock from 'http-request-mock';
 import { ErrorResponse } from '../../src/shared/interfaces/shared.interface';
 import { Bot, BotRequest } from '../../src/shared/interfaces/bot.interface';
 import { BotData, BotsData, BotUpdate } from '../mocks/mocks.constants';
+import { ConversationResponse } from '../../src/shared/interfaces/conversation.interface';
 
 jest.setTimeout(300000);
 
@@ -100,6 +101,16 @@ describe('Start conversation', () => {
     expect(userBot.success).toBe(true);
     expect(userBot.bot?.id).toBe(27);
     if (userBot.chat) {
+      mocker.post(`${BASE_DOMAIN}/conversations`, (): ConversationResponse => {
+        return {
+          success: true,
+          message: ['Hi, How are you?'],
+          memory: {
+            greets: 'oya',
+          },
+          next_state: 'end',
+        };
+      });
       const convo = await userBot.chat({ message: 'Yooh', chat_id: 'Start' });
       console.log(convo);
     }
