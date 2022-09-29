@@ -45,9 +45,8 @@ export const updateBot = async (
   return await sarufi.updateBot(data.id, data.bot);
 };
 export const deleteBot = async (
-  id: number,
-  url?: string
+  data: GetBot
 ): Promise<ErrorResponse | DeleteBot> => {
-  const sarufi = new Sarufi(url);
-  return await sarufi.deleteBot(id);
+  const sarufi = new Sarufi(data.url);
+  return await sarufi.deleteBot(data.id);
 };

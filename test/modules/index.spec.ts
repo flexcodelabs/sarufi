@@ -41,7 +41,9 @@ describe('Create Bot', () => {
     return BotData;
   });
   it('Should return a created bot given a valid token', async () => {
-    const createdBot = await sarufi.createBot({ name: '' });
+    const createdBot = await sarufi.createBot({
+      bot: { name: '' },
+    });
     expect(createdBot.success).toBe(true);
     expect(createdBot.bot).toMatchObject(BotData);
   });
@@ -85,7 +87,7 @@ describe('Delete Bot', () => {
     return { message: 'Bot deleted' };
   });
   it('Should delete a bot', async () => {
-    const deleteBot = await sarufi.deleteBot(BotData.id);
+    const deleteBot = await sarufi.deleteBot({ id: BotData.id });
     expect(deleteBot.success).toBe(true);
     expect(deleteBot?.message).toBe('Bot deleted');
   });
