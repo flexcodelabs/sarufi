@@ -26,7 +26,10 @@ describe('Login User', () => {
     return loginDTO;
   });
   it('Should return message and token', async () => {
-    const result: LoginResponse | ErrorResponse = await sarufi.login('', '');
+    const result: LoginResponse | ErrorResponse = await sarufi.login({
+      username: '',
+      password: '',
+    });
     expect(result.message).toBeDefined();
     expect(result).toMatchObject(loginDTO);
   });
@@ -38,7 +41,7 @@ describe('Create Bot', () => {
   });
   it('Should return a created bot given a valid token', async () => {
     const createdBot = await sarufi.createBot({
-      name: '',
+      bot: { name: '' },
     });
     expect(createdBot.success).toBe(true);
     expect(createdBot.bot).toMatchObject(BotData);
@@ -57,34 +60,48 @@ describe('Get Bots', () => {
 });
 
 describe('Get Bot', () => {
-  mocker.get(`${BASE_DOMAIN}/chatbot/26`, (): Bot => {
+  mocker.get(`${BASE_DOMAIN}/chatbot/27`, (): Bot => {
     return BotData;
   });
   it('Should return a single bot', async () => {
-    const userBots = await sarufi.getBot(BotData.id);
-    expect(userBots.success).toBe(true);
-    expect(userBots.bot?.id).toBe(26);
+    const userBot = await sarufi.getBot({ id: BotData.id });
+    expect(userBot.success).toBe(true);
+    expect(userBot.bot?.id).toBe(27);
   });
 });
 
 describe('Update Bot', () => {
-  mocker.put(`${BASE_DOMAIN}/chatbot/26`, (): BotRequest => {
+  mocker.put(`${BASE_DOMAIN}/chatbot/27`, (): BotRequest => {
     return BotUpdate;
   });
   it('Should return an updated bot', async () => {
-    const userBots = await sarufi.updateBot(BotData.id, BotUpdate);
-    expect(userBots.success).toBe(true);
-    expect(userBots.bot?.id).toBe(26);
+    const userBot = await sarufi.updateBot({ id: BotData.id, bot: BotUpdate });
+    expect(userBot.success).toBe(true);
+    expect(userBot.bot?.id).toBe(26);
   });
 });
 
 describe('Delete Bot', () => {
-  mocker.delete(`${BASE_DOMAIN}/chatbot/26`, (): { message: string } => {
+  mocker.delete(`${BASE_DOMAIN}/chatbot/27`, (): { message: string } => {
     return { message: 'Bot deleted' };
   });
   it('Should delete a bot', async () => {
     const deleteBot = await sarufi.deleteBot(BotData.id);
     expect(deleteBot.success).toBe(true);
     expect(deleteBot?.message).toBe('Bot deleted');
+  });
+});
+describe('Start conversation', () => {
+  mocker.get(`${BASE_DOMAIN}/chatbot/27`, (): Bot => {
+    return BotData;
+  });
+  it('Should start convo given bot', async () => {
+    const userBot = await sarufi.getBot({ id: BotData.id });
+    expect(userBot.success).toBe(true);
+    expect(userBot.bot?.id).toBe(27);
+    if (userBot.chat) {
+      const convo = await userBot.chat({ message: 'Yooh', chat_id: 'Start' });
+      console.log(convo);
+    }
   });
 });
