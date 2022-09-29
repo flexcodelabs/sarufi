@@ -13,4 +13,5 @@ export interface ErrorResponse {
   bot?: Bot | undefined;
   bots?: Bot[] | undefined;
   chat?: (data: ConversationInput) => ConversationResponse;
+  [key: string]: unknown;
 }

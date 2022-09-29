@@ -8,7 +8,6 @@ import {
   DeleteBot,
 } from '../shared/interfaces/bot.interface';
 import {
-  Conversation,
   ConversationInput,
   ConversationResponse,
 } from '../shared/interfaces/conversation.interface';
