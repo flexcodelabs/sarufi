@@ -5,7 +5,7 @@ import xhrAdapter from 'axios/lib/adapters/xhr';
 import HttpRequestMock from 'http-request-mock';
 import { ErrorResponse } from '../../src/shared/interfaces/shared.interface';
 import { Bot, BotRequest } from '../../src/shared/interfaces/bot.interface';
-import { BotData, BotsData } from '../mocks/mocks.constants';
+import { BotData, BotsData, BotUpdate } from '../mocks/mocks.constants';
 
 jest.setTimeout(300000);
 
@@ -60,8 +60,18 @@ describe('Get Bot', () => {
   mocker.get(`${BASE_DOMAIN}/chatbot/26`, (): Bot => {
     return BotData;
   });
-  it('Should return user bots', async () => {
-    const userBots = await sarufi.geBot(BotData.id);
+  it('Should return a single bot', async () => {
+    const userBots = await sarufi.getBot(BotData.id);
+    expect(userBots.success).toBe(true);
+    expect(userBots.bot?.id).toBe(26);
+  });
+});
+describe('Update Bot', () => {
+  mocker.put(`${BASE_DOMAIN}/chatbot/26`, (): BotRequest => {
+    return BotUpdate;
+  });
+  it('Should return an updated bot', async () => {
+    const userBots = await sarufi.updateBot(BotData.id, BotUpdate);
     expect(userBots.success).toBe(true);
     expect(userBots.bot?.id).toBe(26);
   });

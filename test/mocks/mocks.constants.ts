@@ -37,3 +37,14 @@ export const BotsData = [
     created_at: '2022-09-26T23:21:50.496419',
   },
 ];
+
+export const BotUpdate = {
+  name: "Bennett's Bot",
+  user_id: 16,
+  description: 'PUT DESCRIPTION HERE',
+  industry: 'general',
+  intents: {},
+  flows: {},
+  id: 26,
+  model_name: 'models/079d4fa7f3159d44b540c5dd3f146591.pkl',
+};

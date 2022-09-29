@@ -29,10 +29,18 @@ export const geBots = async (
   const sarufi = new Sarufi(url);
   return await sarufi.geBots();
 };
-export const geBot = async (
+export const getBot = async (
   id: number,
   url?: string
 ): Promise<ErrorResponse | BotResponse> => {
   const sarufi = new Sarufi(url);
-  return await sarufi.geBot(id);
+  return await sarufi.getBot(id);
+};
+export const updateBot = async (
+  id: number,
+  bot: BotRequest,
+  url?: string
+): Promise<ErrorResponse | BotResponse> => {
+  const sarufi = new Sarufi(url);
+  return await sarufi.updateBot(id, bot);
 };
