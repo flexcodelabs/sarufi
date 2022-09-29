@@ -47,7 +47,7 @@ export class Sarufi {
     return { success: false, bots: [], message: 'Unauthorized' };
   };
 
-  getUserBots = async (
+  private getUserBots = async (
     token: string
   ): Promise<ErrorResponse | BotsResponse> => {
     try {
@@ -61,7 +61,7 @@ export class Sarufi {
       return sanitizeErrorResponse(e as AxiosError);
     }
   };
-  createUserBot = async (
+  private createUserBot = async (
     bot: BotRequest,
     token: string
   ): Promise<BotResponse | ErrorResponse> => {
