@@ -1,1 +1,2 @@
-export * as sarufi from './modules/instances';
+import * as sarufi from './modules/instances';
+export default sarufi;

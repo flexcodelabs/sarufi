@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { ErrorResponse } from '../interfaces/auth.interface';
+import { ErrorResponse } from '../interfaces/shared.interface';
 
 const sanitizedAxiosError = (
   error: AxiosError,
@@ -21,7 +21,7 @@ const sanitizedAxiosError = (
     status: 400,
   };
 };
-export const sanitizeLoginError = (error: AxiosError): ErrorResponse => {
+export const sanitizeErrorResponse = (error: AxiosError): ErrorResponse => {
   const serverError = error as AxiosError<ErrorResponse>;
   if (axios.isAxiosError(error)) {
     return sanitizedAxiosError(error, serverError);

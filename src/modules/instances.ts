@@ -1,13 +1,53 @@
+import { Login, LoginResponse } from '../shared/interfaces/auth.interface';
 import {
-  ErrorResponse,
-  LoginResponse,
-} from '../shared/interfaces/auth.interface';
+  BotResponse,
+  BotsResponse,
+  CreateBot,
+  DeleteBot,
+  GetBot,
+  UpdateBot,
+} from '../shared/interfaces/bot.interface';
+import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
 
 export const login = async (
-  username: string,
-  password: string
+  data: Login
 ): Promise<LoginResponse | ErrorResponse> => {
-  const sarufi = new Sarufi();
-  return await sarufi.login(username, password);
+  const sarufi = new Sarufi(data.url);
+  return await sarufi.login({
+    username: data.username,
+    password: data.password,
+  });
+};
+
+export const createBot = async (
+  data: CreateBot
+): Promise<BotResponse | ErrorResponse> => {
+  const sarufi = new Sarufi(data.url);
+  return await sarufi.createBot(data.bot);
+};
+export const geBots = async (
+  url?: string
+): Promise<ErrorResponse | BotsResponse> => {
+  const sarufi = new Sarufi(url);
+  return await sarufi.geBots();
+};
+export const getBot = async (
+  data: GetBot
+): Promise<ErrorResponse | BotResponse> => {
+  const sarufi = new Sarufi(data.url);
+  return await sarufi.getBot(data.id);
+};
+export const updateBot = async (
+  data: UpdateBot
+): Promise<ErrorResponse | BotResponse> => {
+  const sarufi = new Sarufi(data.url);
+  return await sarufi.updateBot(data.id, data.bot);
+};
+export const deleteBot = async (
+  id: number,
+  url?: string
+): Promise<ErrorResponse | DeleteBot> => {
+  const sarufi = new Sarufi(url);
+  return await sarufi.deleteBot(id);
 };
