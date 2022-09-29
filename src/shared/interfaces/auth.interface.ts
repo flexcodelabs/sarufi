@@ -6,3 +6,9 @@ export interface LoginResponse {
   code?: string;
   status?: number;
 }
+
+export interface Login {
+  username: string;
+  password: string;
+  url?: string;
+}

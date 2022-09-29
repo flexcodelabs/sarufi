@@ -1,3 +1,8 @@
+import {
+  ConversationInput,
+  ConversationResponse,
+} from './conversation.interface';
+
 export interface BotsResponse {
   success: boolean;
   bots: Bot[];
@@ -14,7 +19,12 @@ export interface Flows {
 export interface BotResponse {
   success: boolean;
   bot: Bot | undefined;
+  chat: (data: ConversationInput) => ConversationResponse;
 }
+
+export type Chat = {
+  function?: () => void;
+};
 
 export interface Bot {
   id: number;
@@ -41,4 +51,18 @@ export interface BotRequest {
 export interface DeleteBot {
   success: string;
   message: string;
+}
+
+export interface GetBot {
+  id: number;
+  url?: string;
+}
+export interface UpdateBot {
+  id: number;
+  bot: BotRequest;
+  url?: string;
+}
+export interface CreateBot {
+  bot: BotRequest;
+  url?: string;
 }
