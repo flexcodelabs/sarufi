@@ -3,6 +3,7 @@ import {
   BotRequest,
   BotResponse,
   BotsResponse,
+  DeleteBot,
 } from '../shared/interfaces/bot.interface';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
@@ -43,4 +44,11 @@ export const updateBot = async (
 ): Promise<ErrorResponse | BotResponse> => {
   const sarufi = new Sarufi(url);
   return await sarufi.updateBot(id, bot);
+};
+export const deleteBot = async (
+  id: number,
+  url?: string
+): Promise<ErrorResponse | DeleteBot> => {
+  const sarufi = new Sarufi(url);
+  return await sarufi.deleteBot(id);
 };

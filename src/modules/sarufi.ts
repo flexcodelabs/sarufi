@@ -5,6 +5,7 @@ import {
   BotRequest,
   BotResponse,
   BotsResponse,
+  DeleteBot,
 } from '../shared/interfaces/bot.interface';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 
@@ -70,6 +71,16 @@ export class Sarufi {
       message: global?.token ? 'Unauthorized' : 'Bot ID not supplied',
     };
   };
+  deleteBot = async (id: number): Promise<ErrorResponse | DeleteBot> => {
+    if (global?.token && id) {
+      return await this.deleteUserBot(global?.token, id);
+    }
+    return {
+      success: false,
+      bot: undefined,
+      message: global?.token ? 'Unauthorized' : 'Bot ID not supplied',
+    };
+  };
 
   private getUserBots = async (
     token: string
@@ -112,6 +123,21 @@ export class Sarufi {
         })
       ).data;
       return { success: true, bot: updatedBot };
+    } catch (e) {
+      return sanitizeErrorResponse(e as AxiosError);
+    }
+  };
+  private deleteUserBot = async (
+    token: string,
+    id: number
+  ): Promise<ErrorResponse | DeleteBot> => {
+    try {
+      const deleteBot: DeleteBot = (
+        await axios.delete(`${this.BASE_DOMAIN}/chatbot/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      ).data;
+      return { ...deleteBot, success: true };
     } catch (e) {
       return sanitizeErrorResponse(e as AxiosError);
     }

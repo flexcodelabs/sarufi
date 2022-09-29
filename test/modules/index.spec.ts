@@ -13,7 +13,6 @@ axios.defaults.adapter = xhrAdapter;
 const mocker = HttpRequestMock.setupForUnitTest('xhr');
 const BASE_DOMAIN = 'https://api.sarufi.io';
 
-//Mock succesfull
 describe('Login User', () => {
   const loginDTO = {
     success: true,
@@ -56,6 +55,7 @@ describe('Get Bots', () => {
     expect(userBots.bots?.length).toBe(2);
   });
 });
+
 describe('Get Bot', () => {
   mocker.get(`${BASE_DOMAIN}/chatbot/26`, (): Bot => {
     return BotData;
@@ -66,6 +66,7 @@ describe('Get Bot', () => {
     expect(userBots.bot?.id).toBe(26);
   });
 });
+
 describe('Update Bot', () => {
   mocker.put(`${BASE_DOMAIN}/chatbot/26`, (): BotRequest => {
     return BotUpdate;
@@ -74,5 +75,16 @@ describe('Update Bot', () => {
     const userBots = await sarufi.updateBot(BotData.id, BotUpdate);
     expect(userBots.success).toBe(true);
     expect(userBots.bot?.id).toBe(26);
+  });
+});
+
+describe('Delete Bot', () => {
+  mocker.delete(`${BASE_DOMAIN}/chatbot/26`, (): { message: string } => {
+    return { message: 'Bot deleted' };
+  });
+  it('Should delete a bot', async () => {
+    const deleteBot = await sarufi.deleteBot(BotData.id);
+    expect(deleteBot.success).toBe(true);
+    expect(deleteBot?.message).toBe('Bot deleted');
   });
 });

@@ -37,3 +37,8 @@ export interface BotRequest {
   model_name?: string;
   industry?: string;
 }
+
+export interface DeleteBot {
+  success: string;
+  message: string;
+}
