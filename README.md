@@ -1,9 +1,9 @@
 # NODEJS SARUFI SDK
 
-![TESTS](https://github.com/flexcodelabs/sarufi/actions/workflows/develop.yml?branch=develop)
-![RELEASES](https://github.com/flexcodelabs/sarufi/actions/workflows/main.yml?branch=main)
-![DEVELOP PR](https://github.com/flexcodelabs/sarufi/actions/workflows/develop-pr.yml?branch=develop)
-![RELEASE PR](https://github.com/flexcodelabs/sarufi/actions/workflows/main-pr.yml?branch=develop)
+![TESTS](https://github.com/flexcodelabs/sarufi/actions/workflows/develop.yml/badge.svg)
+![RELEASES](https://github.com/flexcodelabs/sarufi/actions/workflows/main.yml/badge.svg)
+![DEVELOP PR](https://github.com/flexcodelabs/sarufi/actions/workflows/develop-pr.yml/badge.svg)
+![RELEASE PR](https://github.com/flexcodelabs/sarufi/actions/workflows/main-pr.yml/badge.svg)
 
 Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python Sarufi SDK](https://github.com/Neurotech-HQ/sarufi-python-sdk)
 
@@ -27,7 +27,7 @@ We suply username and password for us to be able to login.
 
 ```JS
 
-sarufi.log({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})
+sarufi.login({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})
 
 ```
 
@@ -181,7 +181,7 @@ bot.chat({message: 'Yooh'})
 }
 ```
 
-### `All Responses have:-`
+### All Responses have:-
 
 1. `Success` property that shows wether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
