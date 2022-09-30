@@ -27,7 +27,7 @@ We suply username and password for us to be able to login.
 
 ```JS
 
-sarufi.log({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})
+sarufi.login({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})
 
 ```
 
