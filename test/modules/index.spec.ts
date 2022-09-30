@@ -54,7 +54,7 @@ describe('Get Bots', () => {
     return BotsData;
   });
   it('Should return user bots', async () => {
-    const userBots = await sarufi.geBots();
+    const userBots = await sarufi.geBots({});
     expect(userBots.success).toBe(true);
     expect(userBots.bots?.length).toBe(2);
   });

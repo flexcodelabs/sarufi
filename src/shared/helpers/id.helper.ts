@@ -1,9 +1,9 @@
-const sample = (id = [], fn = Math.random) => {
+const sample = (id = [], fn = Math.random): string | undefined => {
   if (id.length === 0) return;
   return id[Math.round(fn() * (id.length - 1))];
 };
 
-export const id = (limit = 13, fn = Math.random): string => {
+const geratedId = (limit = 13, fn = Math.random): string => {
   const allowedLetters: any = [
     'abcdefghijklmnopqrstuvwxyz',
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -18,3 +18,5 @@ export const id = (limit = 13, fn = Math.random): string => {
 
   return generatedId.join('');
 };
+
+export const id = geratedId();
