@@ -181,7 +181,7 @@ bot.chat({message: 'Yooh'})
 }
 ```
 
-### `All Responses have:-`
+### All Responses have:-
 
 1. `Success` property that shows wether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
