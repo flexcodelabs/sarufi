@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prebuild": "npm run test",
-    "build": "tsc",
+    "build": "tsc && rm -rf ./lib/test && cp -r ./lib/src/* ./lib/ && rm -rf ./lib/src",
     "clean": "rm -rf ./lib/",
     "cm": "cz",
     "lint": "eslint ./src/ --fix",

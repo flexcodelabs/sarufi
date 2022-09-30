@@ -120,8 +120,11 @@ We call the following method on `sarufi` and pass the bot id
 > Request
 
 ```JS
-
+//For version 0.0.1-Beta
 sarufi.getBots()
+
+//For versions 0.0.2-Beta and above,
+sarufi.getBots({}) //This accepts optional paramemters url and token for persisted authorization tokens.
 
 ```
 
