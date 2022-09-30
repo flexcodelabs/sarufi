@@ -1,7 +1,9 @@
 # NODEJS SARUFI SDK
 
-![Tests](https://github.com/flexcodelabs/sarufi/actions/workflows/release.yml?branch=develop)
-![Create PR](https://github.com/flexcodelabs/sarufi/actions/workflows/pr.yml?branch=develop)
+![TESTS](https://github.com/flexcodelabs/sarufi/actions/workflows/develop.yml?branch=develop)
+![RELEASES](https://github.com/flexcodelabs/sarufi/actions/workflows/main.yml?branch=main)
+![DEVELOP PR](https://github.com/flexcodelabs/sarufi/actions/workflows/develop-pr.yml?branch=develop)
+![RELEASE PR](https://github.com/flexcodelabs/sarufi/actions/workflows/main-pr.yml?branch=develop)
 
 Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python Sarufi SDK](https://github.com/Neurotech-HQ/sarufi-python-sdk)
 
@@ -120,8 +122,11 @@ We call the following method on `sarufi` and pass the bot id
 > Request
 
 ```JS
-
+//For version 0.0.1-Beta
 sarufi.getBots()
+
+//For versions 0.0.2-Beta and above,
+sarufi.getBots({}) //This accepts optional paramemters url and token for persisted authorization tokens.
 
 ```
 
@@ -178,7 +183,7 @@ bot.chat({message: 'Yooh'})
 
 ### `All Responses have:-`
 
-1. `Success` properties that shows wether or not the request was successful
+1. `Success` property that shows wether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
 
 > Example of failed request
@@ -193,6 +198,8 @@ bot.chat({message: 'Yooh'})
 ```
 
 Although an error response can have more than those properties, when the status is 500, that will denote an error occured within the sarufi otherwise it will be from an error originating from the remote sarufi server.
+
+### `All requests have an optional url property that can be passed in case the url changes in the future`
 
 `NB`: For detailed documentation, please visit the [Python Sarufi SDK Docs](https://docs.sarufi.io/)
 

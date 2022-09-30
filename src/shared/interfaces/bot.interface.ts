@@ -59,13 +59,20 @@ export interface DeleteBot {
 export interface GetBot {
   id: number;
   url?: string;
+  token?: string;
+}
+export interface GetBots {
+  token?: string;
+  url?: string;
 }
 export interface UpdateBot {
   id: number;
   bot: BotRequest;
   url?: string;
+  token?: string;
 }
 export interface CreateBot {
   bot: BotRequest;
   url?: string;
+  token?: string;
 }

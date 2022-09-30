@@ -1,8 +1,7 @@
-name: CREATE PR
+name: CREATE DEVELOP PR
 
 on:
   push:
-    branches: [develop]
 
 jobs:
   build:
@@ -13,9 +12,9 @@ jobs:
         node-version: [15.x]
     steps:
       - uses: actions/checkout@v2
-      - name: 🔀 Create PR
+      - name: 🔀
         uses: BaharaJr/create-pr@0.0.1
         with:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
-          DESTINATION_BRANCH: main
-          KEYWORD: build
+          DESTINATION_BRANCH: develop
+          KEYWORD: release

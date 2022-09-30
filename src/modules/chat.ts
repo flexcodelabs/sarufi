@@ -6,6 +6,7 @@ import {
 import axios, { AxiosError } from 'axios';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { sanitizeErrorResponse } from '../shared/helpers/error.helper';
+import { id } from '../shared/helpers/id.helper';
 
 export class ChatConversation {
   constructor(
@@ -38,6 +39,7 @@ export class ChatConversation {
           {
             ...data,
             bot_id: this.bot.id,
+            chat_id: data.chat_id || id,
           },
           { headers: { Authorization: `Bearer ${token}` } }
         )
