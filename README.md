@@ -1,9 +1,9 @@
 # NODEJS SARUFI SDK
 
-![TESTS](https://github.com/flexcodelabs/sarufi/actions/workflows/develop.yml/badge.svg?branch=develop)
-![RELEASES](https://github.com/flexcodelabs/sarufi/actions/workflows/main.yml/badge.svg?branch=main)
-![DEVELOP PR](https://github.com/flexcodelabs/sarufi/actions/workflows/develop-pr.yml/badge.svg?event=push)
-![RELEASE PR](https://github.com/flexcodelabs/sarufi/actions/workflows/main-pr.yml/badge.svg?event=push)
+![TESTS](https://github.com/flexcodelabs/sarufi/actions/workflows/develop.yml/badge.svg)
+![RELEASES](https://github.com/flexcodelabs/sarufi/actions/workflows/main.yml/badge.svg)
+![DEVELOP PR](https://github.com/flexcodelabs/sarufi/actions/workflows/develop-pr.yml/badge.svg)
+![RELEASE PR](https://github.com/flexcodelabs/sarufi/actions/workflows/main-pr.yml/badge.svg)
 
 Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python Sarufi SDK](https://github.com/Neurotech-HQ/sarufi-python-sdk)
 
