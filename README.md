@@ -21,7 +21,7 @@ From terminal in the root directory of your project, run
 
 #### Login
 
-We suply username and password for us to be able to login.
+We supply username and password for us to be able to login.
 
 > Request: From the imported `sarufi`, call
 
