@@ -178,7 +178,7 @@ bot.chat({message: 'Yooh'})
 
 ### `All Responses have:-`
 
-1. `Success` properties that shows wether or not the request was successful
+1. `Success` property that shows wether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
 
 > Example of failed request
@@ -193,6 +193,8 @@ bot.chat({message: 'Yooh'})
 ```
 
 Although an error response can have more than those properties, when the status is 500, that will denote an error occured within the sarufi otherwise it will be from an error originating from the remote sarufi server.
+
+### `All requests have an optional url property that can be passed in case the url changes in the future`
 
 `NB`: For detailed documentation, please visit the [Python Sarufi SDK Docs](https://docs.sarufi.io/)
 

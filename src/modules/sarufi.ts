@@ -17,8 +17,11 @@ import { ChatConversation } from './chat';
 declare let global: { token: string | undefined; url: string | undefined };
 
 export class Sarufi {
-  constructor(private url?: string) {
+  constructor(private url?: string, private token?: string) {
     global.url = this.url;
+    if (this.token) {
+      global.token = this.token;
+    }
   }
   private BASE_DOMAIN = global.url || 'https://api.sarufi.io';
   login = async (data: Login): Promise<LoginResponse | ErrorResponse> => {
