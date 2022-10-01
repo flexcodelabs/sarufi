@@ -69,7 +69,7 @@ sarufi.createBot({bot: REQUEST PAYLOAD})
 
 > Response for successful bot creation
 
-```JSON
+```JSONC
 {
   "success": true,
   "bot": {  "name": "YOUR AWESOME BOT NAME",
@@ -132,7 +132,7 @@ sarufi.getBots({}) //This accepts optional paramemters url and token for persist
 
 > Response on success
 
-```JSON
+```JSONC
 {
     "success": true,
     "bots": [] //Array of all bots you created
@@ -172,7 +172,7 @@ bot.chat({message: 'Yooh'})
 
 > Response on success
 
-```JSON
+```JSONC
 {
   "message":  string| number | unknown | [string] | Record<string, unknown> | [Record<string, unknown>],
   "success": true,
@@ -188,7 +188,7 @@ bot.chat({message: 'Yooh'})
 
 > Example of failed request
 
-```JSON
+```JSONC
 {
   "success": false,
   "message": "MESSAGE", //an error message explaining the error
