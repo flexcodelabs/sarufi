@@ -82,6 +82,27 @@ describe('Update Bot', () => {
   });
 });
 
+describe('Start chat with bot Bot', () => {
+  mocker.post(`${BASE_DOMAIN}/conversation`, (): ConversationResponse => {
+    return {
+      success: true,
+      message: ['Hi, How are you?'],
+      memory: {
+        greets: 'oya',
+      },
+      next_state: 'end',
+    };
+  });
+  it('Should start a chat with a bot', async () => {
+    const chat = await sarufi.chat({
+      message: 'Hey',
+      bot_id: 27,
+      chat_id: 'HEYOO',
+    });
+    expect(chat.success).toBe(true);
+    expect(chat?.message).toBeDefined();
+  });
+});
 describe('Delete Bot', () => {
   mocker.delete(`${BASE_DOMAIN}/chatbot/27`, (): { message: string } => {
     return { message: 'Bot deleted' };

@@ -161,12 +161,18 @@ sarufi.deleteBot({id: BOT ID})
 
 ### Start conversation
 
-This requires us to get a bot we want to have a conversation with and calling a chat method
+There are two methods for this, i.e
+
+1. bot.chat() this requires us to get a bot we want to have a conversation with and calling a chat method
+2. sarufi.chat() this requires a required message, required bot_id and an optional chat_id as request arguments
 
 ```JS
-
+// bot.chat()
 const bot = sarufi.getBot({id: 'OUR BOT ID'})
-bot.chat({message: 'Yooh'})
+await bot.chat({message: 'Yooh'})
+
+//sarufi.chat()
+await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO',})
 
 ```
 
