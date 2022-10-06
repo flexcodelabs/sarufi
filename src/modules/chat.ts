@@ -15,6 +15,11 @@ export class ChatConversation {
     private token: string | undefined
   ) {}
 
+  /**
+   * A method to start chat with your bot
+   *
+   * @param data with message and optional chat_id, if chat id is not supplied, a unique string will be used
+   */
   chat = async (
     data: ConversationInput
   ): Promise<ConversationResponse | ErrorResponse> => {

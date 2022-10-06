@@ -1,3 +1,6 @@
+/**
+ * An interface for login response
+ */
 export interface LoginResponse {
   success: boolean;
   message: string;
@@ -7,6 +10,9 @@ export interface LoginResponse {
   status?: number;
 }
 
+/**
+ * An interface for login request
+ */
 export interface Login {
   username: string;
   password: string;

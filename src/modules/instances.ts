@@ -21,6 +21,12 @@ export const login = async (
   });
 };
 
+/**
+ * A method to create a new bot
+ *
+ * @param data payload to create a bot with bot property as the DTO, an optional url and an optional token
+ */
+
 export const createBot = async (
   data: CreateBot
 ): Promise<BotResponse | ErrorResponse> => {
