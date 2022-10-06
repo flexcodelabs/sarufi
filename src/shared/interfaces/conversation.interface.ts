@@ -26,3 +26,10 @@ export interface ConversationInput {
   message: string;
   chat_id?: string | number | unknown;
 }
+export interface ChatInput {
+  message: string;
+  bot_id: string | number;
+  chat_id?: string | number | unknown;
+  url?: string;
+  token?: string;
+}
