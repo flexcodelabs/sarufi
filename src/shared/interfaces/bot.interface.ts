@@ -4,31 +4,44 @@ import {
 } from './conversation.interface';
 import { ErrorResponse } from './shared.interface';
 
+/**
+ * Get bots response
+ */
 export interface BotsResponse {
   success: boolean;
   bots: Bot[];
 }
 
+/**
+ * An interface for bot intents used for training bots
+ */
 export interface Intents {
   [key: string]: string | number | Record<string, unknown>;
 }
 
+/**
+ * An interface for bot flows used for training bots
+ */
 export interface Flows {
   [key: string]: string | number | Record<string, unknown>;
 }
 
+/**
+ * An interface for both get bot and create bot responses
+ */
 export interface BotResponse {
   success: boolean;
   bot: Bot | undefined;
+  /**
+   * @method Chat method for initiating chat with a particular bot
+   */
   chat: (
     data: ConversationInput
   ) => Promise<ConversationResponse | ErrorResponse>;
 }
-
-export type Chat = {
-  function?: () => void;
-};
-
+/**
+ * A sarufi single bot interface with all the properties
+ */
 export interface Bot {
   id: number;
   user_id: number;
@@ -71,6 +84,10 @@ export interface UpdateBot {
   url?: string;
   token?: string;
 }
+
+/**
+ * An interface for create bot request
+ */
 export interface CreateBot {
   bot: BotRequest;
   url?: string;

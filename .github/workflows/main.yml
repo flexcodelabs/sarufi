@@ -33,8 +33,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-
-      - name: 🔀
-        uses: BaharaJr/merge-pr@0.0.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}

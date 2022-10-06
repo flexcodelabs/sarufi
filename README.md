@@ -69,7 +69,7 @@ sarufi.createBot({bot: REQUEST PAYLOAD})
 
 > Response for successful bot creation
 
-```JSON
+```JSONC
 {
   "success": true,
   "bot": {  "name": "YOUR AWESOME BOT NAME",
@@ -132,7 +132,7 @@ sarufi.getBots({}) //This accepts optional paramemters url and token for persist
 
 > Response on success
 
-```JSON
+```JSONC
 {
     "success": true,
     "bots": [] //Array of all bots you created
@@ -161,18 +161,24 @@ sarufi.deleteBot({id: BOT ID})
 
 ### Start conversation
 
-This requires us to get a bot we want to have a conversation with and calling a chat method
+There are two methods for this, i.e
+
+1. bot.chat() this requires us to get a bot we want to have a conversation with and calling a chat method
+2. sarufi.chat() this requires a required message, required bot_id and an optional chat_id as request arguments
 
 ```JS
-
+// bot.chat()
 const bot = sarufi.getBot({id: 'OUR BOT ID'})
-bot.chat({message: 'Yooh'})
+await bot.chat({message: 'Yooh'})
+
+//sarufi.chat()
+await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO',})
 
 ```
 
 > Response on success
 
-```JSON
+```JSONC
 {
   "message":  string| number | unknown | [string] | Record<string, unknown> | [Record<string, unknown>],
   "success": true,
@@ -183,12 +189,12 @@ bot.chat({message: 'Yooh'})
 
 ### All Responses have:-
 
-1. `Success` property that shows wether or not the request was successful
+1. `Success` property that shows whether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
 
 > Example of failed request
 
-```JSON
+```JSONC
 {
   "success": false,
   "message": "MESSAGE", //an error message explaining the error

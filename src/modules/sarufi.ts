@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { sanitizeErrorResponse } from '../shared/helpers/error.helper';
+import { id } from '../shared/helpers/id.helper';
 import { Login, LoginResponse } from '../shared/interfaces/auth.interface';
 import {
   BotRequest,
@@ -8,6 +9,7 @@ import {
   DeleteBot,
 } from '../shared/interfaces/bot.interface';
 import {
+  ChatInput,
   ConversationInput,
   ConversationResponse,
 } from '../shared/interfaces/conversation.interface';
@@ -82,6 +84,40 @@ export class Sarufi {
       bot: undefined,
       message: global?.token ? 'Unauthorized' : 'Bot ID not supplied',
     };
+  };
+
+  chat = async (
+    data: ChatInput
+  ): Promise<ConversationResponse | ErrorResponse> => {
+    if (global.token) {
+      return this.startChat(data, global.token);
+    }
+    return {
+      success: false,
+      bot: undefined,
+      message: global?.token ? 'Unauthorized' : 'Bot ID not supplied',
+    };
+  };
+  private startChat = async (
+    data: ChatInput,
+    token: string
+  ): Promise<ConversationResponse | ErrorResponse> => {
+    try {
+      const response: ConversationResponse = (
+        await axios.post(
+          `${this.BASE_DOMAIN}/conversation`,
+          {
+            ...data,
+            bot_id: data,
+            chat_id: data.chat_id || id,
+          },
+          { headers: { Authorization: `Bearer ${token}` } }
+        )
+      ).data;
+      return { ...response, success: true };
+    } catch (e) {
+      return sanitizeErrorResponse(e as AxiosError);
+    }
   };
 
   private getUserBots = async (

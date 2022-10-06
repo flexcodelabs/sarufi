@@ -8,6 +8,10 @@ import {
   GetBots,
   UpdateBot,
 } from '../shared/interfaces/bot.interface';
+import {
+  ChatInput,
+  ConversationResponse,
+} from '../shared/interfaces/conversation.interface';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
 
@@ -20,6 +24,12 @@ export const login = async (
     password: data.password,
   });
 };
+
+/**
+ * A method to create a new bot
+ *
+ * @param data payload to create a bot with bot property as the DTO, an optional url and an optional token
+ */
 
 export const createBot = async (
   data: CreateBot
@@ -50,4 +60,15 @@ export const deleteBot = async (
 ): Promise<ErrorResponse | DeleteBot> => {
   const sarufi = new Sarufi(data?.url, data?.token);
   return await sarufi.deleteBot(data.id);
+};
+
+export const chat = async (
+  data: ChatInput
+): Promise<ErrorResponse | ConversationResponse> => {
+  const sarufi = new Sarufi(data?.url, data?.token);
+  return await sarufi.chat({
+    message: data.message,
+    bot_id: data.bot_id,
+    chat_id: data.chat_id,
+  });
 };
