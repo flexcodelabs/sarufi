@@ -17,7 +17,9 @@ From terminal in the root directory of your project, run
 
 ### Use
 
-`import sarufi from sarufi`
+```
+import sarufi from sarufi
+```
 
 #### Login
 
