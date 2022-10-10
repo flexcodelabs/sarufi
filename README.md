@@ -7,6 +7,20 @@
 
 Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python Sarufi SDK](https://github.com/Neurotech-HQ/sarufi-python-sdk)
 
+## Table of Contents
+1. [Installation](#installation-and-use)  
+  1.1 [Installation](#installation)
+2. [Use](#use)  
+  2.1. [Login](#login)  
+  2.1. [Create an empty chatbot](#create-an-empty-chatbot)  
+  2.3. [Updating your bot ](#updating-your-bot)  
+  2.4. [Get bot by id](#get-bot-by-id)  
+  2.5. [Get bots](#get-bots)  
+  2.6. [Delete bot](#delete-bot)  
+  2.7. [All responses details](#all-responses-have)  
+#
+
+
 ## Installation and Use
 
 ### Installation
@@ -161,7 +175,7 @@ sarufi.deleteBot({id: BOT ID})
 }
 ```
 
-### Start conversation
+[### Start conversation](#start-conversation)
 
 There are two methods for this, i.e
 
@@ -189,7 +203,7 @@ await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO',})
 }
 ```
 
-### All Responses have:-
+### All Responses have
 
 1. `Success` property that shows whether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
