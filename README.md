@@ -7,9 +7,22 @@
 
 Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python Sarufi SDK](https://github.com/Neurotech-HQ/sarufi-python-sdk)
 
+## Table of Contents
+- [Installation](#installation)  
+- [Use](#use)  
+- [Login](#login)  
+- [Create an empty chat bot](#create-an-empty-chatbot)   
+- [Updating your bot](#updating-your-bot)    
+- [Get bot](#get-bot)    
+    - [Get bot by id](#get-bot-by-id)  
+    - [Get bots](#get-bots)  
+- [Delete bot](#delete-bot) 
+- [Start conversation](#start-conversation)   
+- [Responses](#responses) 
+
 ## Installation and Use
 
-### Installation
+### 1. Installation
 
 From terminal in the root directory of your project, run
 
@@ -17,11 +30,11 @@ From terminal in the root directory of your project, run
 npm i sarufi
 ```
 
-### Use
+### 2. Use
 
-`import sarufi from sarufi`
+``` import sarufi from sarufi ```
 
-#### Login
+#### 3. Login
 
 We supply username and password for us to be able to login.
 
@@ -43,7 +56,7 @@ sarufi.login({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG P
 }
 ```
 
-### Create an Empty chatbot
+### 4. Create an Empty chatbot
 
 We supply chatbot details
 
@@ -89,7 +102,7 @@ sarufi.createBot({bot: REQUEST PAYLOAD})
 }
 ```
 
-### Updating your bot
+### 5. Updating your bot
 
 Updating a bot, takes in the same arguments as creating a bot with addition of bot id
 
@@ -103,7 +116,9 @@ sarufi.updateBot({bot: REQUEST PAYLOAD, id: YOUR BOT ID})
 
 > Response on success, is the same as the response for creating a bot
 
-### Get bot by id
+### 6. Get bot 
+
+#### 6.1 by id
 
 We call the following method on `sarufi` and pass the bot id
 
@@ -117,7 +132,7 @@ sarufi.getBot({id: BOT ID})
 
 > Response on success, is the same as the response for creating and updating a bot
 
-### Get bots
+#### 6.2 Get bots
 
 We call the following method on `sarufi` and pass the bot id
 
@@ -142,7 +157,7 @@ sarufi.getBots({}) //This accepts optional paramemters url and token for persist
 
 ```
 
-### Delete bot
+### 7. Delete bot
 
 We call the following method on `sarufi` and pass the bot id
 
@@ -161,7 +176,7 @@ sarufi.deleteBot({id: BOT ID})
 }
 ```
 
-### Start conversation
+### 8. Start conversation
 
 There are two methods for this, i.e
 
@@ -189,7 +204,7 @@ await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO',})
 }
 ```
 
-### All Responses have:-
+### 9. Responses:-
 
 1. `Success` property that shows whether or not the request was successful
 2. For failed requests, the response's success property will be false and additional properties for tracing will be added to the response object
