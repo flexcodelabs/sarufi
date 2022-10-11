@@ -14,7 +14,7 @@ Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python 
 - [Create an empty chat bot](#4-create-an-empty-chatbot)   
 - [Updating your bot](#5-updating-your-bot)    
 - [Get bot](#6-get-bot)    
-    - [Get bot by id](#61-get-bot-by-id)  
+    - [Get bot by id](#61-by-id)  
     - [Get bots](#62-get-bots)  
 - [Delete bot](#7-delete-bot) 
 - [Start conversation](#8-start-conversation)   
