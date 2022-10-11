@@ -32,7 +32,9 @@ npm i sarufi
 
 ### 2. Use
 
-``` import sarufi from sarufi ```
+``` 
+import sarufi from sarufi 
+```
 
 #### 3. Login
 
