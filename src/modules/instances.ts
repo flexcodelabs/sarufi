@@ -38,7 +38,7 @@ export const createBot = async (
   return await sarufi.createBot(data.bot);
 };
 export const geBots = async (
-  data: GetBots
+  data?: GetBots
 ): Promise<ErrorResponse | BotsResponse> => {
   const sarufi = new Sarufi(data?.url, data?.token);
   return await sarufi.geBots();
