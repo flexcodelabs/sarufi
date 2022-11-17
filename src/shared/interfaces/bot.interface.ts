@@ -16,7 +16,7 @@ export interface BotsResponse {
  * An interface for bot intents used for training bots
  */
 export interface Intents {
-  [key: string]: string[] | unknown | number | Record<string, unknown>;
+  [key: string]: string | string[] | unknown | number | Record<string, unknown>;
 }
 
 /**

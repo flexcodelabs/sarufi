@@ -44,7 +44,19 @@ export const BotUpdate = {
   description: 'PUT DESCRIPTION HERE',
   industry: 'general',
   intents: {},
-  flows: {},
+  flows: {
+    greets: [
+      'hey',
+      'hello',
+      'hi',
+      'howdy',
+      'hola',
+      'greetings',
+      'good morning',
+      'good afternoon',
+      'good evening',
+    ],
+  },
   id: 26,
   model_name: 'models/079d4fa7f3159d44b540c5dd3f146591.pkl',
 };
