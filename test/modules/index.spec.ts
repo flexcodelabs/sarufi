@@ -42,7 +42,7 @@ describe('Create Bot', () => {
   });
   it('Should return a created bot given a valid token', async () => {
     const createdBot = await sarufi.createBot({
-      bot: { name: '' },
+      bot: { name: '', visible_on_community: false },
     });
     expect(createdBot.success).toBe(true);
     expect(createdBot.bot).toMatchObject(BotData);
@@ -80,6 +80,7 @@ describe('Update Bot', () => {
       name: "Bennett's Bot",
       description: 'PUT DESCRIPTION HERE',
       industry: 'general',
+      visible_on_community: false,
       intents: {
         greets: [
           'hey',
@@ -139,9 +140,9 @@ describe('Start chat with bot Bot', () => {
   });
 });
 describe('Delete Bot', () => {
-  mocker.delete(`${BASE_DOMAIN}/chatbot/27`, (): { message: string } => {
+  /*mocker.delete(`${BASE_DOMAIN}/chatbot/271`, (): { message: string } => {
     return { message: 'Bot deleted' };
-  });
+  });*/
   it('Should delete a bot', async () => {
     const deleteBot = await sarufi.deleteBot({ id: BotData.id });
     expect(deleteBot.success).toBe(true);
