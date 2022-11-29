@@ -140,9 +140,9 @@ describe('Start chat with bot Bot', () => {
   });
 });
 describe('Delete Bot', () => {
-  /*mocker.delete(`${BASE_DOMAIN}/chatbot/271`, (): { message: string } => {
+  mocker.delete(`${BASE_DOMAIN}/chatbot/27`, (): { message: string } => {
     return { message: 'Bot deleted' };
-  });*/
+  });
   it('Should delete a bot', async () => {
     const deleteBot = await sarufi.deleteBot({ id: BotData.id });
     expect(deleteBot.success).toBe(true);
