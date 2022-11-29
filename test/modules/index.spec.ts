@@ -42,7 +42,7 @@ describe('Create Bot', () => {
   });
   it('Should return a created bot given a valid token', async () => {
     const createdBot = await sarufi.createBot({
-      bot: { name: '' },
+      bot: { name: '', visible_on_community: false },
     });
     expect(createdBot.success).toBe(true);
     expect(createdBot.bot).toMatchObject(BotData);
@@ -76,7 +76,43 @@ describe('Update Bot', () => {
     return BotUpdate;
   });
   it('Should return an updated bot', async () => {
-    const userBot = await sarufi.updateBot({ id: BotData.id, bot: BotUpdate });
+    const bot: BotRequest = {
+      name: "Bennett's Bot",
+      description: 'PUT DESCRIPTION HERE',
+      industry: 'general',
+      visible_on_community: false,
+      intents: {
+        greets: [
+          'hey',
+          'hello',
+          'hi',
+          'howdy',
+          'hola',
+          'greetings',
+          'good morning',
+          'good afternoon',
+          'good evening',
+        ],
+        goodbye: [
+          'bye',
+          'goodbye',
+          'see you later',
+          'see you soon',
+          'see you',
+          'talk to you later',
+          'talk to you soon',
+          'talk to you',
+        ],
+        order_pizza: [
+          'I need a pizza',
+          'I want a pizza',
+          'order a pizza',
+          'I want to order a pizza',
+        ],
+      },
+      model_name: 'models/079d4fa7f3159d44b540c5dd3f146591.pkl',
+    };
+    const userBot = await sarufi.updateBot({ id: BotData.id, bot });
     expect(userBot.success).toBe(true);
     expect(userBot.bot?.id).toBe(26);
   });
