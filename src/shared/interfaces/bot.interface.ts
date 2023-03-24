@@ -64,6 +64,7 @@ export interface BotRequest {
   model_name?: string;
   industry?: string;
   visible_on_community: boolean;
+  language?: string;
 }
 
 export interface DeleteBot {
