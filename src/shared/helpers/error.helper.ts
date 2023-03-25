@@ -8,6 +8,8 @@ const sanitizedAxiosError = (
   if (serverError?.response) {
     return {
       ...serverError?.response?.data,
+      message: error.message,
+      error: error.message,
       code: serverError?.code || 'FAILED',
       status: serverError?.response?.status || 400,
       success: false,
@@ -18,7 +20,7 @@ const sanitizedAxiosError = (
     success: false,
     message: error?.message,
     token: '',
-    status: 500,
+    status: 400,
   };
 };
 export const sanitizeErrorResponse = (error: AxiosError): ErrorResponse => {
@@ -30,7 +32,7 @@ export const sanitizeErrorResponse = (error: AxiosError): ErrorResponse => {
     success: false,
     message: serverError?.message || 'Internal server error',
     token: '',
-    status: 500,
+    status: 400,
     code: 'FAILED',
   };
 };

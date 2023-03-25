@@ -16,14 +16,14 @@ export interface BotsResponse {
  * An interface for bot intents used for training bots
  */
 export interface Intents {
-  [key: string]: string | number | Record<string, unknown>;
+  [key: string]: string | string[] | unknown | number | Record<string, unknown>;
 }
 
 /**
  * An interface for bot flows used for training bots
  */
 export interface Flows {
-  [key: string]: string | number | Record<string, unknown>;
+  [key: string]: string | string[] | unknown | number | Record<string, unknown>;
 }
 
 /**
@@ -47,6 +47,7 @@ export interface Bot {
   user_id: number;
   name: string;
   description: string;
+  visible_on_community: boolean;
   intents: Intents;
   flows: Flows;
   model_name: string;
@@ -62,6 +63,8 @@ export interface BotRequest {
   flows?: Flows;
   model_name?: string;
   industry?: string;
+  visible_on_community: boolean;
+  language?: string;
 }
 
 export interface DeleteBot {

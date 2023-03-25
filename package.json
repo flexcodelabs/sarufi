@@ -1,6 +1,6 @@
 {
   "name": "sarufi",
-  "version": "0.0.3-Beta",
+  "version": "0.0.2-rc",
   "description": "Sarufi NodeJs SDK to help you interact with Sarufi Conversational API",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,10 +8,11 @@
     "lib/**/*"
   ],
   "scripts": {
-    "prebuild": "npm run test",
+    "prebuild": "npm run test && npm run clean",
     "build": "tsc && rm -rf ./lib/test && cp -r ./lib/src/* ./lib/ && rm -rf ./lib/src",
     "clean": "rm -rf ./lib/",
     "cm": "cz",
+    "release": "npm run build && npm publish",
     "lint": "eslint ./src/ --fix",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
