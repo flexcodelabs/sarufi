@@ -75,17 +75,17 @@ export interface DeleteBot {
 export interface GetBot {
   id: number;
   url?: string;
-  token?: string;
+  access_token?: string;
 }
 export interface GetBots {
-  token?: string;
+  access_token?: string;
   url?: string;
 }
 export interface UpdateBot {
   id: number;
   bot: BotRequest;
   url?: string;
-  token?: string;
+  access_token?: string;
 }
 
 /**
@@ -94,5 +94,5 @@ export interface UpdateBot {
 export interface CreateBot {
   bot: BotRequest;
   url?: string;
-  token?: string;
+  access_token?: string;
 }

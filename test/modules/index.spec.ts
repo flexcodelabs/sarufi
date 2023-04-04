@@ -16,22 +16,23 @@ const BASE_DOMAIN = 'https://api.sarufi.io';
 
 describe('Login User', () => {
   const loginDTO = {
-    success: true,
-    message: 'Logged in successfully',
-    token: 'basic token',
+    token_type: 'Bearer',
+    scope: 'read:data write:data',
+    expires_in: 86400,
+    access_token: 'basic token',
   };
 
-  mocker.post(`${BASE_DOMAIN}/users/login`, ():
+  mocker.post(`${BASE_DOMAIN}/api/access_token`, ():
     | LoginResponse
     | ErrorResponse => {
     return loginDTO;
   });
   it('Should return message and token', async () => {
     const result: LoginResponse | ErrorResponse = await sarufi.login({
-      username: '',
-      password: '',
+      client_id: '',
+      client_secret: '',
     });
-    expect(result.message).toBeDefined();
+    expect(result.access_token).toBeDefined();
     expect(result).toMatchObject(loginDTO);
   });
 });
@@ -54,7 +55,7 @@ describe('Get Bots', () => {
     return BotsData;
   });
   it('Should return user bots', async () => {
-    const userBots = await sarufi.geBots({});
+    const userBots = await sarufi.getBots();
     expect(userBots.success).toBe(true);
     expect(userBots.bots?.length).toBe(2);
   });
