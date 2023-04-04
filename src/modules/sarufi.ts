@@ -45,9 +45,9 @@ export class Sarufi {
     }
     return { success: false, bot: undefined, message: 'Unauthorized' };
   };
-  geBots = async (): Promise<ErrorResponse | BotsResponse> => {
     if (global?.token) {
       return await this.getUserBots(global?.token);
+  getBots = async (): Promise<ErrorResponse | BotsResponse> => {
     }
     return { success: false, bots: [], message: 'Unauthorized' };
   };
