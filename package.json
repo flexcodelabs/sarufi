@@ -1,6 +1,6 @@
 {
   "name": "sarufi",
-  "version": "0.0.2-rc",
+  "version": "0.0.3",
   "description": "Sarufi NodeJs SDK to help you interact with Sarufi Conversational API",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
