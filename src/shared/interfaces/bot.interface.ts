@@ -54,6 +54,7 @@ export interface Bot {
   industry: string;
   created_at: string;
   updated_at: string;
+  language?: string
 }
 
 export interface BotRequest {
