@@ -8,18 +8,19 @@
 Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python Sarufi SDK](https://github.com/Neurotech-HQ/sarufi-python-sdk)
 
 ## Table of Contents
+
 1. [Installation](#installation-and-use)  
   1.1 [Installation](#installation)
 2. [Use](#use)  
   2.1. [Login](#login)  
   2.1. [Create an empty chatbot](#create-an-empty-chatbot)  
-  2.3. [Updating your bot ](#updating-your-bot)  
+  2.3. [Updating your bot](#updating-your-bot)  
   2.4. [Get bot by id](#get-bot-by-id)  
   2.5. [Get bots](#get-bots)  
   2.6. [Delete bot](#delete-bot)  
   2.7. [All responses details](#all-responses-have)  
-#
 
+#
 
 ## Installation and Use
 
@@ -31,19 +32,19 @@ From terminal in the root directory of your project, run
 
 ### Use
 
-```
+```js
 import sarufi from sarufi
 ```
 
 #### Login
 
-We supply username and password for us to be able to login.
+We supply client_id and client_secret for us to be able to login. Which are available [here](https://www.sarufi.io/profile?tab=authorization)
 
 > Request: From the imported `sarufi`, call
 
 ```JS
 
-sarufi.login({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG PASSWORD"})
+sarufi.login({client_id: "YOUR CLIENT ID", client_secret: "YOUR CLIENT SECRET"})
 
 ```
 
@@ -51,9 +52,11 @@ sarufi.login({username: "YOUR BEAUTIFUL USERNAME", password: "YOUR VERY STRONG P
 
 ```JSON
 {
-  "message": " You have logged in successfully",
-  "token": "YOUR BEARER AUTH TOKEN",
-  "success": true,
+  "access_token": "YOUR ACCESS TOKEN",
+  "scope": "read:data write:data",
+  "expires_in": "EXPIRATION TIME",
+  "token_type": "Bearer",
+  "success": true
 }
 ```
 
@@ -81,7 +84,7 @@ sarufi.createBot({bot: REQUEST PAYLOAD})
 
 ```
 
-`NB: ` For detailed description of intents and flows to be used in conversation, refer to [Python Sarufi SDK Docs](https://docs.sarufi.io/docs/Getting%20started%20/create-a-simple-chatbot#help-me-order-a-pizza-intent)
+`NB:` For detailed description of intents and flows to be used in conversation, refer to [Python Sarufi SDK Docs](https://docs.sarufi.io/docs/Getting%20started%20/create-a-simple-chatbot#help-me-order-a-pizza-intent)
 
 > Response for successful bot creation
 
