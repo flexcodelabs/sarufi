@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: set global attributes
         run: |
-          git config --global user.email "bennybenestergmail.com"
-          git config --global user.name "Bennett Benedict"
+          git config --global user.email "neicoreadams@gmail.com"
+          git config --global user.name "neicore"
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
       - name: Setup Node
         uses: actions/setup-node@v2
