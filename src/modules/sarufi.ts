@@ -28,8 +28,11 @@ export class Sarufi {
       global.access_token = this.access_token;
     }
   }
-  private BASE_DOMAIN = global.url || 'https://api.sarufi.io';
+  private BASE_DOMAIN = global.url || 'https://developers.sarufi.io/';
   login = async (data: Login): Promise<LoginResponse | ErrorResponse> => {
+    throw new Error(
+      'Method deprecated. Get a token from the website dashboard'
+    );
     try {
       const loggedInUser: LoginResponse = (
         await axios.post(`${this.BASE_DOMAIN}/api/access_token`, data)

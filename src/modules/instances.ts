@@ -15,6 +15,9 @@ import {
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
 
+/**
+ * @deprecated Use token from the website dashboard
+ */
 export const login = async (
   data: Login
 ): Promise<LoginResponse | ErrorResponse> => {
