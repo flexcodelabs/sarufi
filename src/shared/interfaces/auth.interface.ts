@@ -10,6 +10,7 @@ export interface LoginResponse {
 
 /**
  * An interface for login request
+ * @deprecated Use token from the website dashboard
  */
 export interface Login {
   client_id: string;
