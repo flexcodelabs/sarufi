@@ -50,4 +50,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added all Sarufi features.
 - Added tests for all methods and helpers.
 
-## [0.0.1-Beta] - 2022-09-29
+## [0.0.4] - 2023-05-24
+
+### Changed
+
+- Change auth URL
+- Bump package version
+
+### Added
+
+- Build to cjs and remove external dependencies

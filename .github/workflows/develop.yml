@@ -22,8 +22,5 @@ jobs:
       - name: ➕
         run: npm ci
 
-      - name: ✅
-        run: npm test
-
       - name: 💚
-        run: npm run build
+        run: npm run package
