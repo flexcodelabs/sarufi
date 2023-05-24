@@ -3,7 +3,7 @@ name: Publish to NPM
 on:
   push:
     branches:
-      - "main"
+      - 'main'
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies and build 🔧
-        run: npm install && npm run prebuild && npm run build
+        run: npm install && npm run build
       - name: Publish package on NPM 📦
         run: npm publish --access public
         env:
@@ -30,18 +30,18 @@ jobs:
       # update version
       - name: install jq
         run: |
-          sudo apt-get update 
+          sudo apt-get update
           sudo apt-get -y install jq
-          
+
       - name: get version
         run: |
-          PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"') 
+          PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
           echo "::set-output name=PACKAGE_VERSION::$(cat ./package.json | jq '.version' | tr -d '"')"
         id: version
       - name: bump-version
         id: bump_version
         uses: flexcodelabs/bump-version@0.0.2
-        with: 
+        with:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
           PACKAGE_VERSION: ${{ steps.version.outputs.PACKAGE_VERSION }}
           DELETE_BRANCH: false
