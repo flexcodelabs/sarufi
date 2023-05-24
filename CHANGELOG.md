@@ -59,4 +59,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Build to cjs and remove external dependencies
+- Build to CJS
+- Remove external dependencies
