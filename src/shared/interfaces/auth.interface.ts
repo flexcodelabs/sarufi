@@ -2,19 +2,18 @@
  * An interface for login response
  */
 export interface LoginResponse {
-  success: boolean;
-  message: string;
-  token: string;
-  errorMessage?: string;
-  code?: string;
-  status?: number;
+  access_token: string;
+  scope: string;
+  expires_in: number;
+  token_type: string;
 }
 
 /**
  * An interface for login request
+ * @deprecated Use token from the website dashboard
  */
 export interface Login {
-  username: string;
-  password: string;
+  client_id: string;
+  client_secret: string;
   url?: string;
 }

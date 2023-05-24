@@ -15,13 +15,16 @@ import {
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
 
+/**
+ * @deprecated Use token from the website dashboard
+ */
 export const login = async (
   data: Login
 ): Promise<LoginResponse | ErrorResponse> => {
   const sarufi = new Sarufi(data.url);
   return await sarufi.login({
-    username: data.username,
-    password: data.password,
+    client_id: data.client_id,
+    client_secret: data.client_secret,
   });
 };
 
@@ -34,38 +37,38 @@ export const login = async (
 export const createBot = async (
   data: CreateBot
 ): Promise<BotResponse | ErrorResponse> => {
-  const sarufi = new Sarufi(data?.url, data?.token);
+  const sarufi = new Sarufi(data?.url, data?.access_token);
   return await sarufi.createBot(data.bot);
 };
-export const geBots = async (
+export const getBots = async (
   data?: GetBots
 ): Promise<ErrorResponse | BotsResponse> => {
-  const sarufi = new Sarufi(data?.url, data?.token);
-  return await sarufi.geBots();
+  const sarufi = new Sarufi(data?.url, data?.access_token);
+  return await sarufi.getBots();
 };
 export const getBot = async (
   data: GetBot
 ): Promise<ErrorResponse | BotResponse> => {
-  const sarufi = new Sarufi(data?.url, data?.token);
+  const sarufi = new Sarufi(data?.url, data?.access_token);
   return await sarufi.getBot(data.id);
 };
 export const updateBot = async (
   data: UpdateBot
 ): Promise<ErrorResponse | BotResponse> => {
-  const sarufi = new Sarufi(data?.url, data?.token);
+  const sarufi = new Sarufi(data?.url, data?.access_token);
   return await sarufi.updateBot(data.id, data.bot);
 };
 export const deleteBot = async (
   data: GetBot
 ): Promise<ErrorResponse | DeleteBot> => {
-  const sarufi = new Sarufi(data?.url, data?.token);
+  const sarufi = new Sarufi(data?.url, data?.access_token);
   return await sarufi.deleteBot(data.id);
 };
 
 export const chat = async (
   data: ChatInput
 ): Promise<ErrorResponse | ConversationResponse> => {
-  const sarufi = new Sarufi(data?.url, data?.token);
+  const sarufi = new Sarufi(data?.url, data?.access_token);
   return await sarufi.chat({
     message: data.message,
     bot_id: data.bot_id,
