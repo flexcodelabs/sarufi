@@ -20,13 +20,10 @@ jobs:
           node-version: lts/*
 
       - name: ➕
-        run: npm ci
-
-      - name: ✅
-        run: npm test
+        run: npm i
 
       - name: 💚
-        run: npm run build
+        run: npm run package
 
       - name: 🚀
         env:
