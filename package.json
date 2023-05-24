@@ -8,11 +8,12 @@
     "lib/**/*"
   ],
   "scripts": {
-    "prebuild": "npm run test && npm run clean",
+    "prebuild": "npm run clean",
     "build": "tsc && rm -rf ./lib/test && cp -r ./lib/src/* ./lib/ && rm -rf ./lib/src",
+    "package": "npm run build -m && ncc build && cd ./lib && find . -name '*.js' -type f -delete && cd ../ && cp -r ./lib/* ./dist/ && rm -rf ./lib && mv dist lib",
     "clean": "rm -rf ./lib/",
     "cm": "cz",
-    "release": "npm run build && npm publish",
+    "release": "npm run package && npm publish",
     "lint": "eslint ./src/ --fix",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
@@ -51,6 +52,7 @@
     "@types/node": "^12.20.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "@vercel/ncc": "^0.36.1",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
@@ -118,8 +120,5 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
-  },
-  "dependencies": {
-    "axios": "^0.27.2"
   }
 }
