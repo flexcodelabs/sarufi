@@ -12,7 +12,7 @@ jest.setTimeout(300000);
 
 axios.defaults.adapter = xhrAdapter;
 const mocker = HttpRequestMock.setupForUnitTest('xhr');
-const BASE_DOMAIN = 'https://api.sarufi.io';
+const BASE_DOMAIN = 'https://developers.sarufi.io';
 
 // describe('Login User', () => {
 //   const loginDTO = {
