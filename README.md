@@ -39,7 +39,7 @@ import sarufi from sarufi
 
 ### Get your api key
 
-`Head to [Sarufi](https://www.sarufi.io/profile?tab=authorization) and copy your api_key to be used throughout your requests.`
+Head to [Sarufi](https://www.sarufi.io/profile?tab=authorization) and copy your api_key to be used throughout your requests.
 
 ### Create an Empty chatbot
 
