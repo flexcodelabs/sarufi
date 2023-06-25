@@ -52,7 +52,7 @@ sarufi.login({client_id: "YOUR CLIENT ID", client_secret: "YOUR CLIENT SECRET"})
 
 ```JSON
 {
-  "access_token": "YOUR ACCESS TOKEN",
+  "api_key": "YOUR ACCESS TOKEN",
   "scope": "read:data write:data",
   "expires_in": "EXPIRATION TIME",
   "token_type": "Bearer",

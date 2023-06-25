@@ -2,7 +2,7 @@
  * An interface for login response
  */
 export interface LoginResponse {
-  access_token: string;
+  api_key: string;
   scope: string;
   expires_in: number;
   token_type: string;
