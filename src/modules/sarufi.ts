@@ -45,12 +45,14 @@ export class Sarufi {
       return sanitizeErrorResponse(error as AxiosError);
     }
   };
+
   createBot = async (bot: BotRequest): Promise<BotResponse | ErrorResponse> => {
     if (global?.access_token) {
       return await this.createUserBot(bot, global?.access_token);
     }
     return { success: false, bot: undefined, message: 'Unauthorized' };
   };
+
   getBots = async (): Promise<ErrorResponse | BotsResponse> => {
     if (global?.access_token) {
       return await this.getUserBots(global?.access_token);
@@ -68,6 +70,7 @@ export class Sarufi {
       message: global?.access_token ? 'Unauthorized' : 'Bot ID not supplied',
     };
   };
+
   updateBot = async (
     id: number,
     bot: BotRequest
@@ -81,6 +84,7 @@ export class Sarufi {
       message: global?.access_token ? 'Unauthorized' : 'Bot ID not supplied',
     };
   };
+
   deleteBot = async (id: number): Promise<ErrorResponse | DeleteBot> => {
     if (global?.access_token && id) {
       return await this.deleteUserBot(global?.access_token, id);
@@ -104,6 +108,7 @@ export class Sarufi {
       message: global?.access_token ? 'Unauthorized' : 'Bot ID not supplied',
     };
   };
+
   private startChat = async (
     data: ChatInput,
     access_token: string
