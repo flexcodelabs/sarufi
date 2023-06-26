@@ -16,15 +16,15 @@ import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
 
 /**
- * @deprecated Use token from the website dashboard
+ *
+ * @param data payload to login you in and interact with your bot, an api key from sarufi dashboard and an optional url
  */
 export const login = async (
   data: Login
 ): Promise<LoginResponse | ErrorResponse> => {
   const sarufi = new Sarufi(data.url);
   return await sarufi.login({
-    client_id: data.client_id,
-    client_secret: data.client_secret,
+    api_key: data.api_key,
   });
 };
 

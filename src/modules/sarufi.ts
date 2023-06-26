@@ -31,20 +31,24 @@ export class Sarufi {
   private BASE_DOMAIN = global.url || 'https://developers.sarufi.io';
 
   login = async (data: Login): Promise<LoginResponse | ErrorResponse> => {
-    throw new Error(
-      'Method deprecated. Get a token from the website dashboard'
-    );
-    try {
-      const loggedInUser: LoginResponse = (
-        await axios.post(`${this.BASE_DOMAIN}/api/api_key`, data)
-      ).data;
-      if (global) {
-        global.api_key = loggedInUser.api_key;
-      }
-      return { ...loggedInUser, success: true };
-    } catch (error) {
-      return sanitizeErrorResponse(error as AxiosError);
+    if (!global?.api_key) {
+      global.api_key = data.api_key;
     }
+    return { api_key: data.api_key };
+    // throw new Error(
+    //   'Method deprecated. Get a token from the website dashboard'
+    // );
+    // try {
+    //   const loggedInUser: LoginResponse = (
+    //     await axios.post(`${this.BASE_DOMAIN}/api/api_key`, data)
+    //   ).data;
+    //   if (global) {
+    //     global.api_key = loggedInUser.api_key;
+    //   }
+    //   return { ...loggedInUser, success: true };
+    // } catch (error) {
+    //   return sanitizeErrorResponse(error as AxiosError);
+    // }
   };
 
   createBot = async (bot: BotRequest): Promise<BotResponse | ErrorResponse> => {
