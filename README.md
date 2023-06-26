@@ -39,7 +39,11 @@ import sarufi from sarufi
 
 ### Get your api key
 
-Head to [Sarufi](https://www.sarufi.io/profile?tab=authorization) and copy your api_key to be used throughout your requests.
+Head to [Sarufi](https://www.sarufi.io/profile?tab=authorization), copy your api_key and login:
+
+```js
+sarufi.login({ api_key: YOUR_API_KEY })
+```
 
 ### Create an Empty chatbot
 
@@ -60,9 +64,10 @@ We supply chatbot details
 Then we call
 
 ```JS
+// call this first if you haven't logged in.
+sarufi.login({ api_key: YOUR_API_KEY }) 
 
-sarufi.createBot({bot: REQUEST PAYLOAD, api_key: YOUR_API_KEY})
-
+sarufi.createBot({bot: REQUEST PAYLOAD})
 ```
 
 `NB:` For detailed description of intents and flows to be used in conversation, refer to [Python Sarufi SDK Docs](https://docs.sarufi.io/docs/Getting%20started%20/create-a-simple-chatbot#help-me-order-a-pizza-intent)
@@ -95,6 +100,7 @@ Updating a bot, takes in the same arguments as creating a bot with addition of b
 
 ```JS
 
+// api_key is optional
 sarufi.updateBot({bot: REQUEST PAYLOAD, id: YOUR BOT ID, api_key: YOUR_API_KEY})
 
 ```
@@ -108,7 +114,7 @@ We call the following method on `sarufi` and pass the bot id
 > Request
 
 ```JS
-
+// api_key is optional
 sarufi.getBot({id: BOT ID, api_key: YOUR_API_KEY})
 
 ```
@@ -145,7 +151,7 @@ sarufi.getBots({api_key: YOUR_API_KEY}) //This accepts optional paramemters url 
 We call the following method on `sarufi` and pass the bot id
 
 ```JS
-
+// api_key is optional
 sarufi.deleteBot({id: BOT ID, api_key: YOUR_API_KEY})
 
 ```
@@ -167,8 +173,10 @@ There are two methods for this, i.e
 2. sarufi.chat() this requires a required message, required bot_id and an optional chat_id as request arguments
 
 ```JS
+// api_key is optional
+
 // bot.chat()
-const bot = sarufi.getBot({id: 'OUR BOT ID', api_key: YOUR_API_KEY})
+const bot = await sarufi.getBot({id: 'OUR BOT ID', api_key: YOUR_API_KEY})
 await bot.chat({message: 'Yooh'})
 
 //sarufi.chat()
