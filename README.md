@@ -12,13 +12,14 @@ Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python 
 1. [Installation](#installation-and-use)  
   1.1 [Installation](#installation)
 2. [Use](#use)  
-  2.1. [Login](#login)  
+  2.1. [Get your api key](#get-your-api-key)  
   2.1. [Create an empty chatbot](#create-an-empty-chatbot)  
   2.3. [Updating your bot](#updating-your-bot)  
   2.4. [Get bot by id](#get-bot-by-id)  
   2.5. [Get bots](#get-bots)  
   2.6. [Delete bot](#delete-bot)  
-  2.7. [All responses details](#all-responses-have)  
+  2.7. [Start conversation](#start-conversation)  
+  2.8. [All responses details](#all-responses-have)  
 
 #
 
@@ -36,29 +37,9 @@ From terminal in the root directory of your project, run
 import sarufi from sarufi
 ```
 
-#### Login
+### Get your api key
 
-We supply client_id and client_secret for us to be able to login. Which are available [here](https://www.sarufi.io/profile?tab=authorization)
-
-> Request: From the imported `sarufi`, call
-
-```JS
-
-sarufi.login({client_id: "YOUR CLIENT ID", client_secret: "YOUR CLIENT SECRET"})
-
-```
-
-> Response for successful login
-
-```JSON
-{
-  "access_token": "YOUR ACCESS TOKEN",
-  "scope": "read:data write:data",
-  "expires_in": "EXPIRATION TIME",
-  "token_type": "Bearer",
-  "success": true
-}
-```
+Head to [Sarufi](https://www.sarufi.io/profile?tab=authorization) and copy your api_key to be used throughout your requests.
 
 ### Create an Empty chatbot
 
@@ -80,7 +61,7 @@ Then we call
 
 ```JS
 
-sarufi.createBot({bot: REQUEST PAYLOAD})
+sarufi.createBot({bot: REQUEST PAYLOAD, api_key: YOUR_API_KEY})
 
 ```
 
@@ -114,7 +95,7 @@ Updating a bot, takes in the same arguments as creating a bot with addition of b
 
 ```JS
 
-sarufi.updateBot({bot: REQUEST PAYLOAD, id: YOUR BOT ID})
+sarufi.updateBot({bot: REQUEST PAYLOAD, id: YOUR BOT ID, api_key: YOUR_API_KEY})
 
 ```
 
@@ -128,7 +109,7 @@ We call the following method on `sarufi` and pass the bot id
 
 ```JS
 
-sarufi.getBot({id: BOT ID})
+sarufi.getBot({id: BOT ID, api_key: YOUR_API_KEY})
 
 ```
 
@@ -145,7 +126,7 @@ We call the following method on `sarufi` and pass the bot id
 sarufi.getBots()
 
 //For versions 0.0.2-Beta and above,
-sarufi.getBots({}) //This accepts optional paramemters url and token for persisted authorization tokens.
+sarufi.getBots({api_key: YOUR_API_KEY}) //This accepts optional paramemters url and api key for persisted authorization tokens.
 
 ```
 
@@ -154,7 +135,7 @@ sarufi.getBots({}) //This accepts optional paramemters url and token for persist
 ```JSONC
 {
     "success": true,
-    "bots": [] //Array of all bots you created
+    "bots": [] // Array of all bots you created
 }
 
 ```
@@ -165,7 +146,7 @@ We call the following method on `sarufi` and pass the bot id
 
 ```JS
 
-sarufi.deleteBot({id: BOT ID})
+sarufi.deleteBot({id: BOT ID, api_key: YOUR_API_KEY})
 
 ```
 
@@ -178,7 +159,7 @@ sarufi.deleteBot({id: BOT ID})
 }
 ```
 
-[### Start conversation](#start-conversation)
+### Start conversation
 
 There are two methods for this, i.e
 
@@ -187,11 +168,11 @@ There are two methods for this, i.e
 
 ```JS
 // bot.chat()
-const bot = sarufi.getBot({id: 'OUR BOT ID'})
+const bot = sarufi.getBot({id: 'OUR BOT ID', api_key: YOUR_API_KEY})
 await bot.chat({message: 'Yooh'})
 
 //sarufi.chat()
-await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO',})
+await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO', api_key: YOUR_API_KEY})
 
 ```
 

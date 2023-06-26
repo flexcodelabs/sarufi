@@ -31,5 +31,5 @@ export interface ChatInput {
   bot_id: string | number;
   chat_id?: string | number | unknown;
   url?: string;
-  access_token?: string;
+  api_key?: string;
 }
