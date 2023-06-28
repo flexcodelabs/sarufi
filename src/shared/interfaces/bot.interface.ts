@@ -54,7 +54,7 @@ export interface Bot {
   industry: string;
   created_at: string;
   updated_at: string;
-  language?: string
+  language?: string;
 }
 
 export interface BotRequest {
@@ -76,17 +76,17 @@ export interface DeleteBot {
 export interface GetBot {
   id: number;
   url?: string;
-  access_token?: string;
+  api_key?: string;
 }
 export interface GetBots {
-  access_token?: string;
+  api_key?: string;
   url?: string;
 }
 export interface UpdateBot {
   id: number;
   bot: BotRequest;
   url?: string;
-  access_token?: string;
+  api_key?: string;
 }
 
 /**
@@ -95,5 +95,5 @@ export interface UpdateBot {
 export interface CreateBot {
   bot: BotRequest;
   url?: string;
-  access_token?: string;
+  api_key?: string;
 }

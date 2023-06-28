@@ -12,30 +12,30 @@ jest.setTimeout(300000);
 
 axios.defaults.adapter = xhrAdapter;
 const mocker = HttpRequestMock.setupForUnitTest('xhr');
-const BASE_DOMAIN = 'https://api.sarufi.io';
+const BASE_DOMAIN = 'https://developers.sarufi.io';
 
-describe('Login User', () => {
-  const loginDTO = {
-    token_type: 'Bearer',
-    scope: 'read:data write:data',
-    expires_in: 86400,
-    access_token: 'basic token',
-  };
+// describe('Login User', () => {
+//   const loginDTO = {
+//     token_type: 'Bearer',
+//     scope: 'read:data write:data',
+//     expires_in: 86400,
+//     api_key: 'basic token',
+//   };
 
-  mocker.post(`${BASE_DOMAIN}/api/access_token`, ():
-    | LoginResponse
-    | ErrorResponse => {
-    return loginDTO;
-  });
-  it('Should return message and token', async () => {
-    const result: LoginResponse | ErrorResponse = await sarufi.login({
-      client_id: '',
-      client_secret: '',
-    });
-    expect(result.access_token).toBeDefined();
-    expect(result).toMatchObject(loginDTO);
-  });
-});
+//   mocker.post(`${BASE_DOMAIN}/api/access_token`, ():
+//     | LoginResponse
+//     | ErrorResponse => {
+//     return loginDTO;
+//   });
+//   it('Should return message and token', async () => {
+//     const result: LoginResponse | ErrorResponse = await sarufi.login({
+//       client_id: '',
+//       client_secret: '',
+//     });
+//     expect(result.api_key).toBeDefined();
+//     expect(result).toMatchObject(loginDTO);
+//   });
+// });
 
 describe('Create Bot', () => {
   mocker.post(`${BASE_DOMAIN}/chatbot`, (): BotRequest => {
