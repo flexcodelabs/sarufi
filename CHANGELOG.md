@@ -59,4 +59,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Build to cjs and remove external dependencies
+- Build to CJS
+- Remove external dependencies
+
+## [0.0.6] - 2023-06-28
+
+### Changed
+
+- Change authentication approach to api_key
+- Update README file explaining new authentication approach (api_key)
+- Bump package version
