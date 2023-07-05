@@ -59,10 +59,10 @@ jobs:
       - name: update main branch     
         run: |
           git config pull.rebase false
-          git pull origin test-branch --allow-unrelated-histories
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
+          git pull origin test-branch --allow-unrelated-histories
           git push --set-upstream origin test-branch
       - name: 🔀
         uses: BaharaJr/create-pr@0.0.1
