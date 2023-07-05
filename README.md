@@ -29,7 +29,9 @@ Sarufi NodeJS SDK to help you interact with SARUFI platform inspired by [Python 
 
 From terminal in the root directory of your project, run
 
-`npm i sarufi`
+```
+npm i sarufi
+```
 
 ### Use
 
