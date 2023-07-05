@@ -39,6 +39,7 @@ jobs:
       - name: update develop branch     
         run: |
           git checkout -b test-branch
+          # git pull
         
       - name: get version
         run: |
@@ -57,9 +58,11 @@ jobs:
       # Commit and push the latest version
       - name: update main branch     
         run: |
+          git config pull.rebase false
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
+          git pull origin test-branch --allow-unrelated-histories
           git push --set-upstream origin test-branch
       - name: 🔀
         uses: BaharaJr/create-pr@0.0.1
