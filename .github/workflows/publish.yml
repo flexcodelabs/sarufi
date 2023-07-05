@@ -16,6 +16,7 @@ jobs:
           git config --global user.email "neicoreadams@gmail.com"
           git config --global user.name "neicore"
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}
+
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
@@ -47,10 +48,11 @@ jobs:
           DELETE_BRANCH: false
           CHANGELOG_PATH: ./CHANGELOG.md
           PACKAGE_JSON_PATH: ./package.json
-      # Commit and push the latest version
-      - name: update main branch
+      # checkout, Commit and push the latest version
+      - name: update develop branch
         run: |
+          git checkout develop
           git add ./package.json
           git add ./CHANGELOG.md
-          git commit -m "Skip CI"
+          git commit -m "Skip CI: update package version and changelog"
           git push
