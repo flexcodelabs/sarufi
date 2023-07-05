@@ -24,22 +24,22 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies and build 🔧
         run: npm install && npm run build
-      - name: Publish package on NPM 📦
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish package on NPM 📦
+      #   run: npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       # update version
       - name: install jq
         run: |
           sudo apt-get update
           sudo apt-get -y install jq
-      - uses: actions/checkout@v2
-        with:
-          ref: develop
-      - name: update develop branch     
-        run: |
-          git checkout develop
-          git pull
+      # - uses: actions/checkout@v2
+      #   with:
+      #     ref: develop
+      # - name: update develop branch     
+      #   run: |
+      #     git checkout develop
+      #     git pull
         
       - name: get version
         run: |
@@ -56,9 +56,16 @@ jobs:
           CHANGELOG_PATH: ./CHANGELOG.md
           PACKAGE_JSON_PATH: ./package.json
       # Commit and push the latest version
-      - name: update develop branch     
+      - name: update main branch     
         run: |
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
           git push
+      - name: 🔀
+        uses: BaharaJr/create-pr@0.0.1
+        with:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
+          DESTINATION_BRANCH: develop
+          KEYWORD: Skip CI
+
