@@ -49,9 +49,13 @@ jobs:
           CHANGELOG_PATH: ./CHANGELOG.md
           PACKAGE_JSON_PATH: ./package.json
       # checkout, Commit and push the latest version
-      - name: update develop branch
+      - uses: actions/checkout@v2
+        with:
+          ref: develop
+      - name: update develop branch     
         run: |
           git checkout develop
+          git pull
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
