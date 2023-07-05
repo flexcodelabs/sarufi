@@ -33,13 +33,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y install jq
-      # - uses: actions/checkout@v2
-      #   with:
-      #     ref: develop
-      # - name: update develop branch     
-      #   run: |
-      #     git checkout develop
-      #     git pull
+      - uses: actions/checkout@v2
+        with:
+          ref: develop
+      - name: update develop branch     
+        run: |
+          git checkout -b test-branch
+          git pull
         
       - name: get version
         run: |
