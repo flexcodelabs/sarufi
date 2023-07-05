@@ -61,7 +61,7 @@ jobs:
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
-          git pull
+          git pull origin test-branch
           git push --set-upstream origin test-branch
       - name: 🔀
         uses: BaharaJr/create-pr@0.0.1
