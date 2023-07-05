@@ -59,7 +59,7 @@ jobs:
       - name: update main branch     
         run: |
           git config pull.rebase false
-          git pull origin test-branch
+          git pull origin test-branch --allow-unrelated-histories
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
