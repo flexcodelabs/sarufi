@@ -38,7 +38,8 @@ jobs:
           ref: develop
       - name: update develop branch     
         run: |
-          git checkout -b test-branch
+          git checkout test-branch
+          git pull
         
       - name: get version
         run: |
