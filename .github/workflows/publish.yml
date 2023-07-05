@@ -33,7 +33,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y install jq
-
+      - uses: actions/checkout@v2
+        with:
+          ref: develop
+      - name: update develop branch     
+        run: |
+          git checkout develop
+          git pull
+        
       - name: get version
         run: |
           PACKAGE_VERSION=$(cat ./package.json | jq '.version' | tr -d '"')
@@ -48,14 +55,9 @@ jobs:
           DELETE_BRANCH: false
           CHANGELOG_PATH: ./CHANGELOG.md
           PACKAGE_JSON_PATH: ./package.json
-      # checkout, Commit and push the latest version
-      - uses: actions/checkout@v2
-        with:
-          ref: develop
+      # Commit and push the latest version
       - name: update develop branch     
         run: |
-          git checkout develop
-          git pull
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
