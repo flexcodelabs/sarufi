@@ -39,7 +39,7 @@ jobs:
       - name: update develop branch     
         run: |
           git checkout -b test-branch
-          git pull
+          # git pull
         
       - name: get version
         run: |
