@@ -1,3 +1,5 @@
+# 0.1.0
+* release: test workflow
 # Sarufi JavaScript SDK
 
 All notable changes to this project will be documented in this file.
