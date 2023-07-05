@@ -58,6 +58,7 @@ jobs:
       # Commit and push the latest version
       - name: update main branch     
         run: |
+          git config pull.rebase false
           git pull origin test-branch
           git add ./package.json
           git add ./CHANGELOG.md
