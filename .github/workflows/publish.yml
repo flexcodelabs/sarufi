@@ -63,7 +63,7 @@ jobs:
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
           git pull origin test-branch --allow-unrelated-histories
-          git push --set-upstream origin test-branch
+          git push --set-upstream origin develop
       # - name: 🔀
       #   uses: BaharaJr/create-pr@0.0.1
       #   with:
