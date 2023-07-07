@@ -71,5 +71,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
           DESTINATION_BRANCH: develop
-          KEYWORD: Skip CI
+          
 
