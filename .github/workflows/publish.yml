@@ -35,12 +35,12 @@ jobs:
           sudo apt-get -y install jq
       - uses: actions/checkout@v2
         with:
-          ref: develop
-      - name: update develop branch     
+          ref: feature/new-version
+      - name: update feature/new-version branch     
         run: |
-          git checkout develop
+          git checkout feature/new-version
           git config pull.rebase false
-          git pull origin develop --allow-unrelated-histories
+          git pull origin feature/new-version --allow-unrelated-histories
         
       - name: get version
         run: |
@@ -57,19 +57,19 @@ jobs:
           CHANGELOG_PATH: ./CHANGELOG.md
           PACKAGE_JSON_PATH: ./package.json
       # Commit and push the latest version
-      - name: update develop branch     
+      - name: update feature/new-version branch     
         run: |
-          git checkout develop
+          git checkout feature/new-version
           git config pull.rebase false
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
-          git pull origin develop --allow-unrelated-histories
-          git push origin develop
-      # - name: 🔀
-      #   uses: BaharaJr/create-pr@0.0.1
-      #   with:
-      #     GITHUB_TOKEN: ${{secrets.TOKEN}}
-      #     DESTINATION_BRANCH: develop
-      #     KEYWORD: Skip CI
+          git pull origin feature/new-version --allow-unrelated-histories
+          git push origin feature/new-version
+      - name: 🔀
+        uses: BaharaJr/create-pr@0.0.1
+        with:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
+          DESTINATION_BRANCH: develop
+          KEYWORD: Skip CI
 
