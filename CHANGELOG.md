@@ -1,3 +1,5 @@
+# 0.1.2
+* release: test workflow
 # 0.1.0
 * release: test workflow
 # Sarufi JavaScript SDK
