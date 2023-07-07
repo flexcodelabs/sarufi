@@ -39,6 +39,8 @@ jobs:
       - name: update develop branch     
         run: |
           git checkout develop
+          git config pull.rebase false
+          git pull origin develop --allow-unrelated-histories
         
       - name: get version
         run: |
