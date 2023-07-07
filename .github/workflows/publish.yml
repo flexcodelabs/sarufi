@@ -39,6 +39,8 @@ jobs:
       - name: update develop branch     
         run: |
           git checkout develop
+          git config pull.rebase false
+          git pull origin develop --allow-unrelated-histories
         
       - name: get version
         run: |
@@ -62,8 +64,8 @@ jobs:
           git add ./package.json
           git add ./CHANGELOG.md
           git commit -m "Skip CI: update package version and changelog"
-          git pull origin test-branch --allow-unrelated-histories
-          git push --set-upstream origin test-branch
+          git pull origin develop --allow-unrelated-histories
+          git push origin develop
       # - name: 🔀
       #   uses: BaharaJr/create-pr@0.0.1
       #   with:
