@@ -24,7 +24,10 @@ export class ChatConversation {
     data: ConversationInput
   ): Promise<ConversationResponse | ErrorResponse> => {
     if (this.token) {
-      return this.startChat(this.token, data);
+      return this.startChat(this.token, {
+        ...data,
+        channel: data.channel ?? 'general',
+      });
     }
     return {
       success: false,
@@ -37,10 +40,15 @@ export class ChatConversation {
     token: string,
     data: ConversationInput
   ): Promise<ConversationResponse | ErrorResponse> => {
+    let url = `${this.url}/conversation`;
+    if (data.channel?.toLowerCase() === 'whatsapp') {
+      url = `${url}/whatsapp`;
+    }
+
     try {
       const response: ConversationResponse = (
         await axios.post(
-          `${this.url}/conversation`,
+          url,
           {
             ...data,
             bot_id: this.bot.id,

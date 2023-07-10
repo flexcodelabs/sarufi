@@ -12,6 +12,7 @@ import {
   ChatInput,
   ConversationInput,
   ConversationResponse,
+  WhatsappConversationResponse,
 } from '../shared/interfaces/conversation.interface';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { ChatConversation } from './chat';
@@ -103,7 +104,9 @@ export class Sarufi {
 
   chat = async (
     data: ChatInput
-  ): Promise<ConversationResponse | ErrorResponse> => {
+  ): Promise<
+    ConversationResponse | WhatsappConversationResponse | ErrorResponse
+  > => {
     if (global.api_key) {
       return this.startChat(data, global.api_key);
     }
@@ -117,11 +120,18 @@ export class Sarufi {
   private startChat = async (
     data: ChatInput,
     api_key: string
-  ): Promise<ConversationResponse | ErrorResponse> => {
+  ): Promise<
+    ConversationResponse | WhatsappConversationResponse | ErrorResponse
+  > => {
+    let url = `${this.BASE_DOMAIN}/conversation`;
+    if (data.channel?.toLowerCase() === 'whatsapp') {
+      url = `${url}/whatsapp`;
+    }
+
     try {
       const response: ConversationResponse = (
         await axios.post(
-          `${this.BASE_DOMAIN}/conversation`,
+          url,
           {
             ...data,
             chat_id: data.chat_id || id,
@@ -149,6 +159,7 @@ export class Sarufi {
       return sanitizeErrorResponse(e as AxiosError);
     }
   };
+
   private getUserBot = async (
     api_key: string,
     id: number
@@ -177,6 +188,7 @@ export class Sarufi {
       return sanitizeErrorResponse(e as AxiosError);
     }
   };
+
   private updateUserBot = async (
     api_key: string,
     id: number,
@@ -206,6 +218,7 @@ export class Sarufi {
       return sanitizeErrorResponse(e as AxiosError);
     }
   };
+
   private deleteUserBot = async (
     api_key: string,
     id: number
@@ -221,6 +234,7 @@ export class Sarufi {
       return sanitizeErrorResponse(e as AxiosError);
     }
   };
+
   private createUserBot = async (
     bot: BotRequest,
     api_key: string

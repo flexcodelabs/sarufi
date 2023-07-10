@@ -179,21 +179,43 @@ There are two methods for this, i.e
 
 // bot.chat()
 const bot = await sarufi.getBot({id: 'OUR BOT ID', api_key: YOUR_API_KEY})
-await bot.chat({message: 'Yooh'})
+await bot.chat({message: 'Yooh', channel: 'whatsapp'}) //channel is optional (Default is general)
 
 //sarufi.chat()
-await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO', api_key: YOUR_API_KEY})
+await sarufi.chat({message: 'Hey', bot_id: bot.id, chat_id: 'HEYOO', api_key: YOUR_API_KEY, channel: 'whatsapp'})
 
 ```
 
 > Response on success
 
 ```JSONC
+// General Channel
 {
   "message":  string| number | unknown | [string] | Record<string, unknown> | [Record<string, unknown>],
   "success": true,
   "memory": { [key: string]: string | unknown},
   [key: string]: string | unknown
+}
+
+// Whatsapp Channel
+{
+  "actions": Array<{
+    "send_message"?: string[];
+    "send_button"?: any;
+    "send_reply_button"?: { 
+      "type": string; 
+      "body": { "text": string }; 
+      "action": any 
+    };
+    "send_image"?: Array<{ 
+      "link": string; 
+      "caption": string 
+    }>;
+    "send_audio"?: any;
+    "send_videos"?: any;
+  }>;,
+ "success": true,
+  "memory": { [key: string]: string | unknown},
 }
 ```
 

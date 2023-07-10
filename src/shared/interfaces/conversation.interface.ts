@@ -22,14 +22,30 @@ export interface ConversationResponse {
   };
   [key: string]: string | unknown;
 }
+
+export interface WhatsappConversationResponse
+  extends Pick<ConversationResponse, 'success' | 'memory'> {
+  actions: Array<{
+    send_message?: any[];
+    send_button?: any;
+    send_reply_button?: { type: string; body: { text: string }; action: any };
+    send_image?: Array<{ link: string; caption: string }>;
+    send_audio?: any;
+    send_videos?: any;
+  }>;
+}
+
 export interface ConversationInput {
   message: string;
   chat_id?: string | number | unknown;
+  channel?: 'general' | 'whatsapp';
 }
+
 export interface ChatInput {
   message: string;
   bot_id: string | number;
   chat_id?: string | number | unknown;
   url?: string;
   api_key?: string;
+  channel?: 'general' | 'whatsapp';
 }

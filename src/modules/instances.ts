@@ -11,6 +11,7 @@ import {
 import {
   ChatInput,
   ConversationResponse,
+  WhatsappConversationResponse,
 } from '../shared/interfaces/conversation.interface';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
 import { Sarufi } from './sarufi';
@@ -71,11 +72,14 @@ export const deleteBot = async (
 
 export const chat = async (
   data: ChatInput
-): Promise<ErrorResponse | ConversationResponse> => {
+): Promise<
+  ErrorResponse | ConversationResponse | WhatsappConversationResponse
+> => {
   const sarufi = new Sarufi(data?.url, data?.api_key);
   return await sarufi.chat({
     message: data.message,
     bot_id: data.bot_id,
     chat_id: data.chat_id,
+    channel: data.channel ?? 'general',
   });
 };
