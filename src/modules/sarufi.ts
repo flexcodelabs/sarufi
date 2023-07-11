@@ -129,7 +129,7 @@ export class Sarufi {
     }
 
     try {
-      const response: ConversationResponse = (
+      const response: ConversationResponse | WhatsappConversationResponse = (
         await axios.post(
           url,
           {
@@ -180,7 +180,9 @@ export class Sarufi {
         bot,
         chat: async function (
           data: ConversationInput
-        ): Promise<ConversationResponse | ErrorResponse> {
+        ): Promise<
+          ConversationResponse | WhatsappConversationResponse | ErrorResponse
+        > {
           return await chatBot.chat(data);
         },
       };
@@ -210,7 +212,9 @@ export class Sarufi {
         bot: updatedBot,
         chat: async function (
           data: ConversationInput
-        ): Promise<ConversationResponse | ErrorResponse> {
+        ): Promise<
+          ConversationResponse | WhatsappConversationResponse | ErrorResponse
+        > {
           return await chatBot.chat(data);
         },
       };
@@ -256,7 +260,9 @@ export class Sarufi {
         bot: createdBot,
         chat: async function (
           data: ConversationInput
-        ): Promise<ConversationResponse | ErrorResponse> {
+        ): Promise<
+          ConversationResponse | WhatsappConversationResponse | ErrorResponse
+        > {
           return await chatBot.chat(data);
         },
       };

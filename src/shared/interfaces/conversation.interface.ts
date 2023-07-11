@@ -23,8 +23,7 @@ export interface ConversationResponse {
   [key: string]: string | unknown;
 }
 
-export interface WhatsappConversationResponse
-  extends Pick<ConversationResponse, 'success' | 'memory'> {
+export interface WhatsappConversationResponse extends ConversationResponse {
   actions: Array<{
     send_message?: any[];
     send_button?: any;

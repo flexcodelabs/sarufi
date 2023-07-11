@@ -6,7 +6,10 @@ import HttpRequestMock from 'http-request-mock';
 import { ErrorResponse } from '../../src/shared/interfaces/shared.interface';
 import { Bot, BotRequest } from '../../src/shared/interfaces/bot.interface';
 import { BotData, BotsData, BotUpdate } from '../mocks/mocks.constants';
-import { ConversationResponse } from '../../src/shared/interfaces/conversation.interface';
+import {
+  ConversationResponse,
+  WhatsappConversationResponse,
+} from '../../src/shared/interfaces/conversation.interface';
 
 jest.setTimeout(300000);
 
@@ -170,7 +173,10 @@ describe('Start conversation', () => {
       mocker.post(`${BASE_DOMAIN}/conversation`, (): ConversationResponse => {
         return convoResponse;
       });
-      const convo: ConversationResponse | ErrorResponse = await userBot.chat({
+      const convo:
+        | ConversationResponse
+        | WhatsappConversationResponse
+        | ErrorResponse = await userBot.chat({
         message: 'Yooh',
         chat_id: 'Start',
       });
