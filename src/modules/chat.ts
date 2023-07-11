@@ -2,6 +2,7 @@ import { Bot } from '../shared/interfaces/bot.interface';
 import {
   ConversationInput,
   ConversationResponse,
+  WhatsappConversationResponse,
 } from '../shared/interfaces/conversation.interface';
 import axios, { AxiosError } from 'axios';
 import { ErrorResponse } from '../shared/interfaces/shared.interface';
@@ -22,9 +23,14 @@ export class ChatConversation {
    */
   chat = async (
     data: ConversationInput
-  ): Promise<ConversationResponse | ErrorResponse> => {
+  ): Promise<
+    ConversationResponse | WhatsappConversationResponse | ErrorResponse
+  > => {
     if (this.token) {
-      return this.startChat(this.token, data);
+      return this.startChat(this.token, {
+        ...data,
+        channel: data.channel ?? 'general',
+      });
     }
     return {
       success: false,
@@ -36,11 +42,19 @@ export class ChatConversation {
   private startChat = async (
     token: string,
     data: ConversationInput
-  ): Promise<ConversationResponse | ErrorResponse> => {
+  ): Promise<
+    ConversationResponse | WhatsappConversationResponse | ErrorResponse
+  > => {
+    let url = `${this.url}/conversation`;
+    console.log(data);
+    if (data.channel?.toLowerCase() === 'whatsapp') {
+      url = `${url}/whatsapp`;
+    }
+
     try {
-      const response: ConversationResponse = (
+      const response: ConversationResponse | WhatsappConversationResponse = (
         await axios.post(
-          `${this.url}/conversation`,
+          url,
           {
             ...data,
             bot_id: this.bot.id,
