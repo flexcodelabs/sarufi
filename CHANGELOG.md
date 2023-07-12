@@ -1,3 +1,35 @@
+# 0.1.4
+* build: bump package version
+
+* release: improve workflow
+
+* release: resolve nerge conflicts
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
+
+* release: test workflow
 # 0.1.3
 * release: resolve merge conflict
 # 0.1.2

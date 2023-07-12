@@ -1,6 +1,7 @@
 import {
   ConversationInput,
   ConversationResponse,
+  WhatsappConversationResponse,
 } from './conversation.interface';
 import { ErrorResponse } from './shared.interface';
 
@@ -37,7 +38,9 @@ export interface BotResponse {
    */
   chat: (
     data: ConversationInput
-  ) => Promise<ConversationResponse | ErrorResponse>;
+  ) => Promise<
+    ConversationResponse | WhatsappConversationResponse | ErrorResponse
+  >;
 }
 /**
  * A sarufi single bot interface with all the properties
