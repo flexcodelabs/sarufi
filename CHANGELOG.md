@@ -1,3 +1,7 @@
+# 0.1.5
+* :wrench:  feat: added support for chatting through Whatsapp channel
+
+* :beetle: fix: types issue on new implementation
 # 0.1.4
 * build: bump package version
 
